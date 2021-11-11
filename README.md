@@ -1,2 +1,1 @@
-# training-management-system
-TMS
+# Training Management System
