@@ -60,7 +60,9 @@
 	color: #57DD43;
 	float: right;
 }
-
+ a:hover i {
+            transform: scale(1.5);
+        }
 
 .wrap:after {
 	width: 8px;
@@ -93,13 +95,21 @@
 	position: absolute;
 }
 
-.card{
+.card-course{
 	width: 18rem;
 }
 
+.btn.btn-rounded {
+    border-radius: 50px
+}
+
+.scroll {
+    max-height: 200px;
+    overflow-y: auto;
+}
 
 html, body { height: 100%; }
-footer{position: absolute;}
+footer{position: sticky;}
 body { display: flex; flex-direction: column; }
 main { flex-grow: 1; }
 
