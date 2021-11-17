@@ -16,25 +16,51 @@
 	color: white;
 }
 
-.ribbon-red {
+.rejected .ribbon{
 	background: #fc4c4c;
 	box-shadow: 0 0 0 3px #F8463F, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-
-.ribbon-blue {
+.rejected .icon{
+	color: #fc4c4c;
+}
+.rejected .more{
+	color: #fc4c4c;
+	float: right;
+}
+.new .ribbon {
 	background: #5185f5;
 	box-shadow: 0 0 0 3px #5185f5, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-
-.ribbon-purple {
+.new .icon{
+	color: #5185f5;
+}
+.new .more{
+	color: #5185f5;
+	float: right;
+}
+.confirmed .ribbon {
 	background: #9143cc;
 	box-shadow: 0 0 0 3px #9143cc, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-
-.ribbon-green {
+.confirmed .icon{
+	color: #9143cc;
+}
+.confirmed .more{
+	color: #9143cc;
+	float: right;
+}
+.process .ribbon {
 	background: #57DD43;
 	box-shadow: 0 0 0 3px #57DD43, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
+.process .icon{
+	color: #57DD43;
+}
+.process .more{
+	color: #57DD43;
+	float: right;
+}
+
 
 .wrap:after {
 	width: 8px;
@@ -67,13 +93,13 @@
 	position: absolute;
 }
 
-.footer{
-	padding-top: 50px;
-}
 .card{
 	width: 18rem;
 }
 
-.hideP{
-	visibility: hidden;
-}
+
+html, body { height: 100%; }
+footer{position: absolute;}
+body { display: flex; flex-direction: column; }
+main { flex-grow: 1; }
+
