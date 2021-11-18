@@ -9,78 +9,127 @@
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   </head>
   <body>
-    <div class="container">
-      <div class="row justify-content-md-center">
-        <form class="row g-3">
-          <div class="col-md-4">
-            <label for="RequirementUser" class="form-label"> Requested by </label>
-            <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" placeholder="John Smith" required>
+    <div>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <div class="d-flex">
+            <img style="width: 50px;" src="../../assets/Atos_Origin_2011_logo.svg"
+              alt="atos icon">
           </div>
-
-          <div class="col-md-4">
-            <label for="RequirementUserVertical" class="form-label"> Vertical master </label>
-            <select class="form-select" name="requirementUserVertical" id="RequirementUserVertical" required>
-              <option selected> Select an option </option>
-              <option value="insurance"> Insurance </option>
-              <option value="banking"> Banking </option>
-              <option value="logistics"> Logistics </option>
-              <option value="retail"> Retail </option>
-              <option value="marketing"> Marketing </option>
-            </select>
+          <div class="row">
+            <div class="input-group col">
+              <input type="text" class="form-control" placeholder="Courses"
+                aria-label="Username" aria-describedby="basic-addon1">
+              <button class="input-group-text" id="basic-addon1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                  fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                  <path
+                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                              </svg>
+              </button>
+            </div>
+            <div class="btn-group col">
+              <button type="button" class="btn btn-light dropdown-toggle"
+                data-bs-toggle="dropdown" aria-expanded="false">Options
+              </button>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Option #1</a></li>
+                <li><a class="dropdown-item" href="#">Option #2</a></li>
+                <li><a class="dropdown-item" href="#">Option #3</a></li>
+                <li>
+                  <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item" href="#">If necesary</a></li>
+              </ul>
+            </div>
           </div>
-
-          <div class="col-md-4">
-            <label for="TrainingArea" class="form-label"> Choose a technology </label>
-            <input list="trainingAreas" class="form-control" name="areas" id="TrainingArea" placeholder="Java, C#, .NET..." required>
-            <datalist id="trainingAreas">
-              <option value="Java">
-              <option value="C#">
-              <option value=".NET">
-            </datalist>
+          <div class="d-flex">
+            <a class="nav-link" href="#"><i class="fas fa-user"></i>
+              Username</a>
           </div>
-
-          <div class="col-12">
-            <label for="TrainingDescription" class="form-label"> Training description </label> <br>
-            <textarea id="TrainingDescription" class="form-control" name="trainingDescription" rows="2" cols="50" required> </textarea>
-          </div>
-
-          <div class="col-md-6">
-            <label for="RequirementReceivedData" class="form-label"> Requirement received date </label>
-            <input type="date" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" required>
-          </div>
-
-          <div class="col-md-6">
-            <label for="RequestedTrainingStartDate" class="form-label"> Training start date </label>
-            <input type="date" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" required>
-          </div>
-
-          <div class="col-md-4">
-            <label for="TrainingTimeZone" class="form-label"> Training time zone </label>
-            <input list="trainingTimeZone" class="form-control" name="timeZone" id="TrainingTimeZone" placeholder="Type a time zone" required>
-            <datalist id="trainingTimeZone">
-                <option value="(GMT-12:00) International Date Line West">
-                <option value="(GMT-11:00) Midway Island, Samoa">
-                <option value="(GMT-08:00) Pacific Time (US & Canada)">
-            </datalist>
-          </div>
-
-          <div class="col-md-4">
-            <label for="TotalCandidates" class="form-label"> Total candidates </label>
-            <input type="number" class="form-control" id="TotalCandidates" name="totalCandidates" min="1" placeholder="10" required>
-          </div>
-
-          <div class="col-md-4">
-            <label for="TotalDurationDays" class="form-label"> Total training days </label>
-            <input type="number" class="form-control" id="TotalDurationDays" name="totalDurationDays" min="1" placeholder="3" required>
-          </div>
-
-          <div class="col-12">
-            <button type="submit" class="btn btn-primary"> Submit </button>
-          </div>
-        </form>
-      </div>
+        </div>
+      </nav>
     </div>
+    <main class="p-5">
+      <div class="container border p-3">
+        <div class="row justify-content-md-center">
+          <form class="row g-3">
+            <h3> Training Request form</h3>
+            <div class="col-md-4">
+              <label for="RequirementUser" class="form-label"> Requested by </label>
+              <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" placeholder="John Smith" required>
+            </div>
+  
+            <div class="col-md-4">
+              <label for="RequirementUserVertical" class="form-label"> Vertical master </label>
+              <select class="form-select" name="requirementUserVertical" id="RequirementUserVertical" required>
+                <option selected> Select an option </option>
+                <option value="insurance"> Insurance </option>
+                <option value="banking"> Banking </option>
+                <option value="logistics"> Logistics </option>
+                <option value="retail"> Retail </option>
+                <option value="marketing"> Marketing </option>
+              </select>
+            </div>
+  
+            <div class="col-md-4">
+              <label for="TrainingArea" class="form-label"> Choose a technology </label>
+              <input list="trainingAreas" class="form-control" name="areas" id="TrainingArea" placeholder="Java, C#, .NET..." required>
+              <datalist id="trainingAreas">
+                <option value="Java">
+                <option value="C#">
+                <option value=".NET">
+              </datalist>
+            </div>
+  
+            <div class="col-12">
+              <label for="TrainingDescription" class="form-label"> Training description </label> <br>
+              <textarea id="TrainingDescription" class="form-control" name="trainingDescription" rows="2" cols="50" required> </textarea>
+            </div>
+  
+            <div class="col-md-6">
+              <label for="RequirementReceivedData" class="form-label"> Requirement received date </label>
+              <input type="date" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" required>
+            </div>
+  
+            <div class="col-md-6">
+              <label for="RequestedTrainingStartDate" class="form-label"> Training start date </label>
+              <input type="date" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" required>
+            </div>
+  
+            <div class="col-md-4">
+              <label for="TrainingTimeZone" class="form-label"> Training time zone </label>
+              <input list="trainingTimeZone" class="form-control" name="timeZone" id="TrainingTimeZone" placeholder="Type a time zone" required>
+              <datalist id="trainingTimeZone">
+                  <option value="(GMT-12:00) International Date Line West">
+                  <option value="(GMT-11:00) Midway Island, Samoa">
+                  <option value="(GMT-08:00) Pacific Time (US & Canada)">
+              </datalist>
+            </div>
+  
+            <div class="col-md-4">
+              <label for="TotalCandidates" class="form-label"> Total candidates </label>
+              <input type="number" class="form-control" id="TotalCandidates" name="totalCandidates" min="1" placeholder="10" required>
+            </div>
+  
+            <div class="col-md-4">
+              <label for="TotalDurationDays" class="form-label"> Total training days </label>
+              <input type="number" class="form-control" id="TotalDurationDays" name="totalDurationDays" min="1" placeholder="3" required>
+            </div>
+  
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary "> Submit </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+    <footer style="position: absolute; bottom: 0; width: 100%;">
+      <div class="text-center p-4"
+        style="background-color: rgba(0, 0, 0, 0.05);">
+        © 2021 Copyright: <img style="width: 50px;"
+        src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
+      </div>
+    </footer>
   </body>
 </html>
-
-<!-- TrainingRequirementMaster values('TRM001',sysdate,'Jonathan','VID01','Java','Core and advance Java 8',sysdate+1,20,'NAO',5 -->
