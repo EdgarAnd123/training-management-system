@@ -1,0 +1,35 @@
+.card {
+    border-radius: 1rem;
+}
+
+.card-height {
+    min-height: 500px;
+}
+
+.form__textarea {
+    resize: none;
+}
+
+.form-check-input, .form-check-label {
+    cursor: pointer;
+}
+
+.footer {
+    position: sticky;
+}
+
+.footer__logo {
+    width: 50px;
+}
+
+.navbar {
+    box-shadow: 0px 1px 5px #DBDBDB;
+}
+
+.navbar__logo {
+    width: 50px;
+}
+
+.wrapper {
+    min-height: calc( 100vh - 128px );
+}
