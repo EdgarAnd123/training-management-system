@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.myapp.app.model.TrainingProposals;
 
-public class ProposalMapper implements RowMapper<TrainingProposals> {
+public class MemberMapper implements RowMapper<TrainingProposals> {
 
 	@Override
 	public TrainingProposals mapRow(ResultSet result, int arg1) throws SQLException {

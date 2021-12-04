@@ -125,12 +125,47 @@
 								<p class="card-text"
 									th:utext="${'Course Duration: ' + r.TotalDurationDays + ' days'}"></p>
 								<p class="card-text"
-									th:utext="${'Vertical: ' + r.RequirementUserVertical}"></p>
+									th:utext="${'User:  ' + r.RequirementUser+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 								<div class="btn more">
-									<a><i class="fas fa-plus-circle"></i></a>
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal" th:attr="data-bs-target='#modal'+${r.RequirementID}">
+									  Proposals
+									</button>
 								</div>
+								
 							</div>
 						</div>
+						<!-- Modal -->
+								<div class="modal fade" th:id="'modal'+${r.RequirementID}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <h5 class="modal-title">Proposal</h5>
+								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+								      </div>
+								      <div class="modal-body">
+								      	<div th:if="${r.getProposalObject() != null}">
+								      	
+									        <h6 class="card-subtitle mb-2 text-muted"
+												th:utext="${r.getProposalObject().ProposalID}"></h6>
+											<p class="card-text"
+												th:utext="${'Proposed Date: ' + #dates.format(r.getProposalObject().ProposedDate, 'MM/dd/yyyy')}"></p>
+											<p class="card-text"
+												th:utext="${'Proposed Time ' + r.getProposalObject().ProposedTime }"></p>
+											<p class="card-text"
+												th:utext="${'Proposed Duration: ' + r.getProposalObject().ProposedDuration + ' days'}"></p>
+											<p class="card-text"
+												th:utext="${'Member User:  ' + r.getProposalObject().MemberID+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
+								     	</div>  
+								     	<div th:unless="${r.getProposalObject()!=null}">
+								     		No Proposal Yet
+								     	</div>
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
 					</td>
 				</tr>
 				<tr>

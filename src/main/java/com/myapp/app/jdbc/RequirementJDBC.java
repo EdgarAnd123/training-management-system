@@ -8,8 +8,14 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
+import com.myapp.app.mapper.ExecutionMapper;
+import com.myapp.app.mapper.ProposalMapper;
 import com.myapp.app.mapper.RequirementMapper;
+import com.myapp.app.mapper.VerticalMapper;
+import com.myapp.app.model.TrainingExecutionMaster;
+import com.myapp.app.model.TrainingProposals;
 import com.myapp.app.model.TrainingRequirementMaster;
+import com.myapp.app.model.VerticalMaster;
 
 
 public class RequirementJDBC {
@@ -25,17 +31,19 @@ public class RequirementJDBC {
 		return all;
 	} 
 
-	public TrainingRequirementMaster getExecutionById(String id) {
-		List<com.myapp.app.model.TrainingRequirementMaster> req =  temp.query("Select * from TrainingExecutionMaster where RequirementID = " + id, new RequirementMapper());
-		return req.isEmpty() ? null : req.get(0);
+	public TrainingExecutionMaster getExecutionById(String id) {
+		List<TrainingExecutionMaster> ex =  temp.query("Select * from TrainingExecutionMaster where RequirementID = " + id, new ExecutionMapper());
+		return ex.isEmpty() ? null : ex.get(0);
 	}
 
-	public void insertNewStudent(int a, String b, String c, int d) {
-		temp.update("insert into student values(?,?,?,?)", new Object[] { a, b, c, d });
+	public VerticalMaster getVerticalById(String id) {
+		List<VerticalMaster> v =  temp.query("Select * from VerticalMaster where VID = '" + id+"'", new VerticalMapper());
+		return v.isEmpty() ? null : v.get(0);
 	}
-
-	public void updateStudentScore(int sid, int newscore) {
-		temp.update("update student set sscore=? where sid=?", new Object[] { newscore, sid });
+	
+	public TrainingProposals getProposalByExecutionId(String id) {
+		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where ExecutionID = '" + id+"'", new ProposalMapper());
+		return p.isEmpty() ? null : p.get(0);
 	}
 
 }

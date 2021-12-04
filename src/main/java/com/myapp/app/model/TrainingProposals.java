@@ -16,7 +16,7 @@ public class TrainingProposals {
 	private String MemberID;
 	private Date ProposedDate;
 	private String ProposedTime;
-	private Integer ProposdDuration;
+	private Integer ProposedDuration;
 	
 	public String getProposalID() {
 		return ProposalID;
@@ -49,13 +49,16 @@ public class TrainingProposals {
 	public void setProposedTime(String proposedTime) {
 		ProposedTime = proposedTime;
 	}
-	public Integer getProposdDuration() {
-		return ProposdDuration;
+	public Integer getProposedDuration() {
+		return ProposedDuration;
 	}
-	public void setProposdDuration(Integer proposdDuration) {
-		ProposdDuration = proposdDuration;
+	public void setProposedDuration(Integer proposdDuration) {
+		ProposedDuration = proposdDuration;
 	}
 	
+	public void getMemberObject() {
+		
+	}
 	
 	
 }

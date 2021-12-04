@@ -7,10 +7,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+import com.myapp.app.jdbc.RequirementJDBC;
+
 public class TrainingRequirementMaster {
 	
-	@Id
 	private String RequirementID;
 	private Date RequirementReceivedData;
 	private String RequirementUser;
@@ -21,6 +21,7 @@ public class TrainingRequirementMaster {
 	private Integer TotalCandidates;
 	private String TrainingTimeZone;
 	private Integer TotalDurationDays;
+	private RequirementJDBC jdbc = new RequirementJDBC();
 	
 	public String getRequirementID() {
 		return RequirementID;
@@ -83,4 +84,18 @@ public class TrainingRequirementMaster {
 		TotalDurationDays = totalDurationDays;
 	}
 	
+	public TrainingExecutionMaster getExecutionJDBC() {
+		return jdbc.getExecutionById(RequirementID);
+	}
+	
+	public String getVerticalMasterName() {
+		VerticalMaster v = jdbc.getVerticalById(RequirementUserVertical);
+		return v == null ? "" : v.getVerticalName();
+	}
+	
+	public TrainingProposals getProposalObject() {
+		TrainingProposals p = jdbc.getProposalByExecutionId(RequirementID);
+		return p;
+	}
+
 }
