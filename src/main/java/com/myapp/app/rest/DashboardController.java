@@ -25,5 +25,10 @@ public class DashboardController {
 		return "dashboard";
 	}
 	
+	@GetMapping("/newrequest")
+	public String getNewRequest() {
+		return "training-request";
+	}
+	
 
 }
