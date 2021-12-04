@@ -14,7 +14,7 @@
 	href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
 	integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
 	crossorigin="anonymous" />
-<link rel="stylesheet" type="text/css" href="css/Dashboard.css">
+<link rel="stylesheet" type="text/css" href="/css/Dashboard.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
@@ -40,17 +40,6 @@ function CountInstructors() {
 						alt="atos icon">
 				</div>
 				<div class="row">
-					<div class="input-group col">
-						<input type="text" class="form-control" placeholder="Courses"
-							aria-label="Username" aria-describedby="basic-addon1">
-						<button class="input-group-text" id="basic-addon1">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                            </svg>
-						</button>
-					</div>
 					<div class="btn-group col">
 						<button type="button" class="btn btn-light dropdown-toggle"
 							data-bs-toggle="dropdown" aria-expanded="false">Options
@@ -78,16 +67,25 @@ function CountInstructors() {
 		<div class="col-3">
 			<div class="new card-course card m-1" >
 				<div class="card-body">
-					<h5 class="card-title"><i class="icon fas fa-book"></i> TRM001 Java</h5>
-					<h6 class="card-subtitle mb-2 text-muted">25/11/2021</h6>
-					<p class="card-text">Core and advance Java 8</p>
-					<p class="card-text">Course Duration: 5 Days</p>
-					<p class="card-text">Course Instructor: Instructor</p>
+					<h5 class="card-title">
+						<i class="icon fas fa-book"
+							th:utext="${' '+r.RequirementID + ' ' + r.TrainingArea}"></i>
+					</h5>
+					<h6 class="card-subtitle mb-2 text-muted"
+						th:utext="${'Start date: ' + #dates.format(r.RequestedTrainingStartDate, 'MM/dd/yyyy')}"></h6>
+					<p class="card-text" th:utext="${r.TrainingDescription}"></p>
+					<p class="card-text"
+						th:utext="${'Course Duration: ' + r.TotalDurationDays + ' days'}"></p>
+					<p class="card-text"
+						th:utext="${'User:  ' + r.RequirementUser+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 				</div>
 				<div class="wrap">
 					<span class="ribbon">New</span>
 				</div>
 			</div>
+			
+			<br/>
+			<a th:href="dashboard"><button class="btn btn-primary">Go Back</button></a>
 		</div>
 		<div class="col-9">
 			<div class="container new border p-3">
@@ -96,7 +94,16 @@ function CountInstructors() {
 					<div class="col-6">
 						<div class="card m-1">
 							<div class="card-body">
-								<div class= "p-5">REQUIREMENTS LIST</div>
+								<ul class="list-group list-group-flush">
+								  <li class="list-group-item" th:utext="${'Requirement ID: '+r.RequirementID}"></li>
+								  <li class="list-group-item" th:utext="${'Received Data: '+r.RequirementReceivedData}"></li>
+								  <li class="list-group-item" th:utext="${'User: '+r.RequirementUser}"></li>
+								  <li class="list-group-item" th:utext="${'Vertical: '+r.RequirementUserVertical + ' ' + r.getVerticalMasterName()}"></li>
+								  <li class="list-group-item" th:utext="${'Training Area: '+r.TrainingArea}"></li>
+								  <li class="list-group-item" th:utext="${'Training Description '+r.TrainingDescription}"></li>
+								  <li class="list-group-item" th:utext="${'Requested Training Start Date: '+r.RequestedTrainingStartDate}"></li>
+								  <li class="list-group-item" th:utext="${'Total Candidates: '+r.TotalCandidates}"></li>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -110,48 +117,11 @@ function CountInstructors() {
 									</h5>
 									<hr class="style1">
 									<div class="scroll">
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 1</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 2</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 3</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 4</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 5</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 6</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 7</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 8</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 9</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 10</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 11</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 12</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 13</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 14</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 15</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 16</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 17</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 18</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 19</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 20</label><br>
-									  <input type="checkbox" onclick="CountInstructors()" />
-									  <label> Instructor's Name 21</label><br>
+										<div th:each="t : ${trainers}">
+										  <input type="checkbox" onclick="CountInstructors()" />
+										  <label th:utext="${t.MemberID + '-' + t.MemberName}"></label><br>
+										</div>
+										<br>
 									  </div>
 									  <br>
 									  <div id="instructorcount"></div>

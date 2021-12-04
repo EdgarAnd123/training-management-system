@@ -1,4 +1,4 @@
-package com.myapp.app.rest;
+package com.myapp.app.controller;
 
 import java.util.ArrayList;
 import java.util.List;

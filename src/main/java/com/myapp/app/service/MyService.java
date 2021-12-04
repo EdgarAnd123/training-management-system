@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myapp.app.jdbc.JDBC;
+import com.myapp.app.model.LDMemberData;
 import com.myapp.app.model.TrainingRequirementMaster;
 
 
@@ -27,6 +28,17 @@ public class MyService {
 		
 		return result;
 		
+	}
+	
+	public List<LDMemberData> getrainerslist(){
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+		return jdbc.getMembers();
+		
+	}
+
+	public Object getrequirement(String id) {
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+		return jdbc.getRequirementById(id);
 	}
 
 }

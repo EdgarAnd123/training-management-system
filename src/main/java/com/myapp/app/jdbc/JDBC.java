@@ -52,5 +52,15 @@ public class JDBC {
 		List<LDMemberData> p =  temp.query("Select * from LDMemberData where MemberID = '" + id+"'", new MemberMapper());
 		return p.isEmpty() ? null : p.get(0);
 	}
+	
+	public List<LDMemberData> getMembers() {
+		List<LDMemberData> p =  temp.query("Select * from LDMemberData", new MemberMapper());
+		return p;
+	}
+
+	public TrainingRequirementMaster getRequirementById(String id) {
+		List<TrainingRequirementMaster> p =  temp.query("Select * from TrainingRequirementMaster where RequirementID = '" + id+"'", new RequirementMapper());
+		return p.isEmpty() ? null : p.get(0);
+	}
 
 }
