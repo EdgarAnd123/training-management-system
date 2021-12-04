@@ -7,7 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
+import com.myapp.app.jdbc.JDBC;
+
 public class TrainingProposals {
 
 	@Id
@@ -17,6 +18,7 @@ public class TrainingProposals {
 	private Date ProposedDate;
 	private String ProposedTime;
 	private Integer ProposedDuration;
+	private JDBC jdbc = new JDBC();
 	
 	public String getProposalID() {
 		return ProposalID;
@@ -56,9 +58,10 @@ public class TrainingProposals {
 		ProposedDuration = proposdDuration;
 	}
 	
-	public void getMemberObject() {
-		
+	public LDMemberData getMemberObject() {
+		LDMemberData p = jdbc.getMemberById(MemberID);
+		return p;
 	}
-	
+
 	
 }

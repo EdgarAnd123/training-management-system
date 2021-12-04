@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.myapp.app.jdbc.RequirementJDBC;
+import com.myapp.app.jdbc.JDBC;
 
 public class TrainingRequirementMaster {
 	
@@ -21,7 +21,7 @@ public class TrainingRequirementMaster {
 	private Integer TotalCandidates;
 	private String TrainingTimeZone;
 	private Integer TotalDurationDays;
-	private RequirementJDBC jdbc = new RequirementJDBC();
+	private JDBC jdbc = new JDBC();
 	
 	public String getRequirementID() {
 		return RequirementID;

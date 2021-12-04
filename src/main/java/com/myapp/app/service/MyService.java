@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.myapp.app.jdbc.RequirementJDBC;
+import com.myapp.app.jdbc.JDBC;
 import com.myapp.app.model.TrainingRequirementMaster;
 
 
@@ -14,7 +14,7 @@ import com.myapp.app.model.TrainingRequirementMaster;
 public class MyService {
 
 	public List<List<TrainingRequirementMaster>> getrequiremetsinlist(){
-		com.myapp.app.jdbc.RequirementJDBC jdbc = new RequirementJDBC();
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
 		List<TrainingRequirementMaster> l = jdbc.getAllRequirements();
 		List<List<TrainingRequirementMaster>> result = new ArrayList();
 		 for (int i=0; i<l.size(); i= i+3){

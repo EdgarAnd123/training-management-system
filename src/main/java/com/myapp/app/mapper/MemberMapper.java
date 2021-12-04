@@ -4,19 +4,20 @@ import java.sql.SQLException;
 
 import org.springframework.jdbc.core.RowMapper;
 
+import com.myapp.app.model.LDMemberData;
 import com.myapp.app.model.TrainingProposals;
 
-public class MemberMapper implements RowMapper<TrainingProposals> {
+public class MemberMapper implements RowMapper<LDMemberData> {
 
 	@Override
-	public TrainingProposals mapRow(ResultSet result, int arg1) throws SQLException {
-		TrainingProposals p = new TrainingProposals();
-		p.setProposalID(result.getString(1));
-		p.setExecutionID(result.getString(2));
-		p.setMemberID(result.getString(3));
-		p.setProposedDate(result.getDate(4));
-		p.setProposedTime(result.getString(5));
-		p.setProposedDuration(result.getInt(6));;
+	public LDMemberData mapRow(ResultSet result, int arg1) throws SQLException {
+		LDMemberData p = new LDMemberData();
+		p.setMemberID(result.getString(1));
+		p.setMemberName(result.getString(2));
+		p.setMemberContact(result.getString(3));
+		p.setMemberLocation(result.getString(4));
+		p.setMemberEmail(result.getString(5));
+		p.setLDRoleID(result.getString(6));;
 		return p;
 		
 	}

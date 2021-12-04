@@ -154,7 +154,7 @@
 											<p class="card-text"
 												th:utext="${'Proposed Duration: ' + r.getProposalObject().ProposedDuration + ' days'}"></p>
 											<p class="card-text"
-												th:utext="${'Member User:  ' + r.getProposalObject().MemberID+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
+												th:utext="${r.getProposalObject().getMemberObject() == null ? 'Member User:  ' + r.getProposalObject().MemberID : 'Member User:  ' + r.getProposalObject().MemberID+' - '+ r.getProposalObject().getMemberObject().MemberName  }"></p>
 								     	</div>  
 								     	<div th:unless="${r.getProposalObject()!=null}">
 								     		No Proposal Yet
