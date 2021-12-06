@@ -2,11 +2,9 @@ package com.myapp.app.jdbc;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.myapp.app.mapper.ExecutionMapper;
 import com.myapp.app.mapper.MemberMapper;
@@ -24,7 +22,7 @@ public class JDBC {
 	JdbcTemplate temp;
 
 	public JDBC() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF/spring-config.xml");
 		temp = (JdbcTemplate) context.getBean("mytemp");
 	}
 
@@ -41,6 +39,11 @@ public class JDBC {
 	public VerticalMaster getVerticalById(String id) {
 		List<VerticalMaster> v =  temp.query("Select * from VerticalMaster where VID = '" + id+"'", new VerticalMapper());
 		return v.isEmpty() ? null : v.get(0);
+	}
+
+	public List<VerticalMaster> getAllVerticalMaster() {
+		List<VerticalMaster> verticalList =  temp.query("Select * from VerticalMaster", new VerticalMapper());
+		return verticalList;
 	}
 	
 	public TrainingProposals getProposalByExecutionId(String id) {
@@ -63,4 +66,26 @@ public class JDBC {
 		return p.isEmpty() ? null : p.get(0);
 	}
 
+	public int saveTrainingRequirementMaster(TrainingRequirementMaster trainingRequirementMaster) {
+		final String INSERT_QUERY = "INSERT INTO trainingrequirementmaster (RequirementID , RequirementReceivedData, RequirementUser, RequirementUserVertical, TrainingArea, TrainingDescription,  RequestedTrainingStartDate, TotalCandidates, TrainingTimeZone, TotalDurationDays) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+			Object[] trainingRequest = new Object[] { trainingRequirementMaster.getRequirementID(), trainingRequirementMaster.getRequirementReceivedData(),
+					trainingRequirementMaster.getRequirementUser(),
+					trainingRequirementMaster.getRequirementUserVertical(), trainingRequirementMaster.getTrainingArea(),
+					trainingRequirementMaster.getTrainingDescription(), trainingRequirementMaster.getRequestedTrainingStartDate(),
+					trainingRequirementMaster.getTotalCandidates(), trainingRequirementMaster.getTrainingTimeZone(),
+					trainingRequirementMaster.getTotalDurationDays() };
+
+			return temp.update(INSERT_QUERY, trainingRequest);
+	}
+
+	public int saveTrainingProposal(TrainingProposals trainingProposals) {
+		final String INSERT_QUERY = "INSERT INTO trainingproposals (ProporsalID , ExecutionID, MemberID, ProposedDate, ProposedTime, ProposedDuration) values (?, ?, ?, ?, ?, ?)";
+
+		Object[] trainingProposal = new Object[] { trainingProposals.getProposalID(), trainingProposals.getExecutionID(),
+				trainingProposals.getMemberID(), trainingProposals.getProposedDate(), trainingProposals.getProposedTime(),
+				trainingProposals.getProposedDuration() };
+
+		return temp.update(INSERT_QUERY, trainingProposal);
+	}
 }
