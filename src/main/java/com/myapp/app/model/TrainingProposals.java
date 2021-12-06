@@ -2,23 +2,27 @@ package com.myapp.app.model;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
+import javax.persistence.Column;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 import com.myapp.app.jdbc.JDBC;
 
 public class TrainingProposals {
 
 	@Id
+	@Column(name = "ProporsalID")
 	private String ProposalID;
+
 	private String ExecutionID;
 	private String MemberID;
 	private Date ProposedDate;
 	private String ProposedTime;
 	private Integer ProposedDuration;
 	private JDBC jdbc = new JDBC();
+
+	public TrainingProposals(){
+		this.ProposalID = "PRO" + Math.floor(Math.random()*100+1);
+	}
 	
 	public String getProposalID() {
 		return ProposalID;

@@ -7,21 +7,31 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.myapp.app.jdbc.JDBC;
 
 public class TrainingRequirementMaster {
-	
+
+	@Id
 	private String RequirementID;
+
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date RequirementReceivedData;
 	private String RequirementUser;
 	private String RequirementUserVertical;
 	private String TrainingArea;
 	private String TrainingDescription;
+
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date RequestedTrainingStartDate;
 	private Integer TotalCandidates;
 	private String TrainingTimeZone;
 	private Integer TotalDurationDays;
 	private JDBC jdbc = new JDBC();
+
+	public TrainingRequirementMaster(){
+		this.RequirementID = "TRM" + Math.floor(Math.random()*100+1);
+	}
 	
 	public String getRequirementID() {
 		return RequirementID;

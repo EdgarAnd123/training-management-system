@@ -1,132 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title> Training Management | Atos </title>
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-      <link rel="stylesheet" href="css/training-request.css">
-  </head>
-  <body>
-    <header>
-      <nav class="navbar bg-light">
-        <div class="container">
-          <img class="navbar__logo" src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
-          <div class="row">
-            <div class="col input-group">
-              <input type="text" class="form-control" placeholder="Courses" aria-label="Username" aria-describedby="basic-addon1">
-              <button class="input-group-text" id="basic-addon1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                  fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                  <path
-                    d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                </svg>
-              </button>
-            </div>
-            <div class="col btn-group">
-              <button type="button" class="btn btn-light dropdown-toggle"
-                data-bs-toggle="dropdown" aria-expanded="false">Options
-              </button>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Option #1</a></li>
-                <li><a class="dropdown-item" href="#">Option #2</a></li>
-                <li><a class="dropdown-item" href="#">Option #3</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="#">If necesary</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fas fa-user"></i> John Doe
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <li><a class="dropdown-item" href="#"> My profile </a></li>
-              <li><a class="dropdown-item" href="#"> Change password </a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#"> Log out </a></li>
-            </ul>
-          </div>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Training Management | Atos </title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+  <link rel="stylesheet" href="css/training-request.css">
+</head>
+<body>
+<header>
+  <nav class="navbar bg-light">
+    <div class="container">
+      <img class="navbar__logo" src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
+      <div class="row">
+        <div class="col input-group">
+          <input type="text" class="form-control" placeholder="Courses" aria-label="Username" aria-describedby="basic-addon1">
+          <button class="input-group-text" id="basic-addon1">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                 fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path
+                      d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+          </button>
         </div>
-      </nav>
-    </header>
-    <div class="d-flex justify-content-center wrapper">
-      <div class="card align-self-center p-3">
-        <div class="card-body">
-          <h2 class="card-title mb-3 text-center"> New Training </h2>
-          <h6 class="card-subtitle mb-5 text-muted "> Please, fill the following information in order to request a training. 
-              After completing this process, an LBP will contact you soon. </h6>
-          <form class="row g-3">
-            <div class="col-md-4">
-              <label for="RequirementUser" class="form-label"> Requested by </label>
-              <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" placeholder="John Smith" required>
-            </div>
-            <div class="col-md-4">
-              <label for="RequirementUserVertical" class="form-label"> Vertical master </label>
-              <select class="form-select" name="requirementUserVertical" id="RequirementUserVertical" required>
-                <option selected> Select an option </option>
-                <option value="insurance"> Insurance </option>
-                <option value="banking"> Banking </option>
-                <option value="logistics"> Logistics </option>
-                <option value="retail"> Retail </option>
-                <option value="marketing"> Marketing </option>
-              </select>
-            </div>
-            <div class="col-md-4">
-              <label for="TrainingArea" class="form-label"> Choose a technology </label>
-              <input list="trainingAreas" class="form-control" name="areas" id="TrainingArea" placeholder="Java, C#, .NET..." required>
-              <datalist id="trainingAreas">
-                <option value="Java">
-                <option value="C#">
-                <option value=".NET">
-              </datalist>
-            </div>
-            <div class="col-12"> 
-              <label for="TrainingDescription" class="form-label"> Training description </label> <br>
-              <textarea id="TrainingDescription" class="form-control form__textarea" name="trainingDescription" rows="2" required> </textarea>
-            </div>
-            <div class="col-md-6">
-              <label for="RequirementReceivedData" class="form-label"> Requirement received date </label>
-              <input type="date" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" required>
-            </div>
-            <div class="col-md-6">
-              <label for="RequestedTrainingStartDate" class="form-label"> Training start date </label>
-              <input type="date" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" required>
-            </div>
-            <div class="col-md-4">
-              <label for="TrainingTimeZone" class="form-label"> Training time zone </label>
-              <input list="trainingTimeZone" class="form-control" name="timeZone" id="TrainingTimeZone" placeholder="Type a time zone" required>
-              <datalist id="trainingTimeZone">
-                  <option value="(GMT-12:00) International Date Line West">
-                  <option value="(GMT-11:00) Midway Island, Samoa">
-                  <option value="(GMT-08:00) Pacific Time (US & Canada)">
-              </datalist>
-            </div>
-            <div class="col-md-4">
-              <label for="TotalCandidates" class="form-label"> Total candidates </label>
-              <input type="number" class="form-control" id="TotalCandidates" name="totalCandidates" min="1" placeholder="10" required>
-            </div>
-            <div class="col-md-4">
-              <label for="TotalDurationDays" class="form-label"> Total training days </label>
-              <input type="number" class="form-control" id="TotalDurationDays" name="totalDurationDays" min="1" placeholder="3" required>
-            </div>
-            <div class="col-12">
-              <button type="submit" class="btn btn-primary"> Submit </button>
-            </div>
-          </form>
+        <div class="col btn-group">
+          <button type="button" class="btn btn-light dropdown-toggle"
+                  data-bs-toggle="dropdown" aria-expanded="false">Options
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Option #1</a></li>
+            <li><a class="dropdown-item" href="#">Option #2</a></li>
+            <li><a class="dropdown-item" href="#">Option #3</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">If necesary</a></li>
+          </ul>
         </div>
+      </div>
+      <div class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-user"></i> John Doe
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li><a class="dropdown-item" href="#"> My profile </a></li>
+          <li><a class="dropdown-item" href="#"> Change password </a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#"> Log out </a></li>
+        </ul>
       </div>
     </div>
-    <footer class="container-fluid footer">
-      <div class="bg-light text-center p-4">
-        © 2021 Copyright:
-        <img class="footer__logo" src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
-      </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-  </body>
+  </nav>
+</header>
+<div class="d-flex justify-content-center wrapper">
+  <div class="card align-self-center p-3">
+    <div class="card-body">
+      <h2 class="card-title mb-3 text-center"> New Training </h2>
+      <h6 class="card-subtitle mb-5 text-muted "> Please, fill the following information in order to request a training.
+        After completing this process, an LBP will contact you soon. </h6>
+      <form id="trainingRequestForm" class="row g-3" modelAttribute="trainingRequest" th:action="@{dashboard}">
+        <div class="col-md-4">
+          <label for="RequirementUser" class="form-label"> Requested by </label>
+          <input type="text" class="form-control" id="RequirementUser" name="requirementUser" placeholder="John Smith" required>
+        </div>
+        <div class="col-md-4">
+          <label for="RequirementUserVertical" class="form-label"> Vertical master </label>
+          <select class="form-select" name="requirementUserVertical" id="RequirementUserVertical" required>
+            <div th:each="vertical: ${verticals}">
+              <option th:value="${vertical.VID}" th:text="${vertical.VerticalName}"></option>
+            </div>
+          </select>
+        </div>
+        <div class="col-md-4">
+          <label for="TrainingArea" class="form-label"> Choose a technology </label>
+          <input list="listTrainingAreas" class="form-control" name="trainingArea" id="TrainingArea" placeholder="Java, C#, .NET..." required>
+          <datalist id="listTrainingAreas">
+            <option value="Java">
+            <option value="C#">
+            <option value=".NET">
+          </datalist>
+        </div>
+        <div class="col-12">
+          <label for="TrainingDescription" class="form-label"> Training description </label> <br>
+          <textarea id="TrainingDescription" class="form-control form__textarea" name="trainingDescription" rows="2" required> </textarea>
+        </div>
+        <div class="col-md-6">
+          <label for="RequirementReceivedData" class="form-label"> Requirement received date </label>
+          <input type="date" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" required readonly>
+        </div>
+        <div class="col-md-6">
+          <label for="RequestedTrainingStartDate" class="form-label"> Training start date </label>
+          <input type="date" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" required>
+        </div>
+        <div class="col-md-4">
+          <label for="TrainingTimeZone" class="form-label"> Training time zone </label>
+          <input list="ListtrainingTimeZone" class="form-control" name="trainingTimeZone" id="TrainingTimeZone" placeholder="Type a time zone" required>
+          <datalist id="ListtrainingTimeZone">
+            <option value="(GMT-12:00)"> (GMT-12:00) International Date Line West </option>
+            <option value="(GMT-11:00)"> (GMT-11:00) Midway Island, Samoa  </option>
+            <option value="(GMT-08:00)"> (GMT-08:00) Pacific Time (US & Canada) </option>
+          </datalist>
+        </div>
+        <div class="col-md-4">
+          <label for="TotalCandidates" class="form-label"> Total candidates </label>
+          <input type="number" class="form-control" id="TotalCandidates" name="totalCandidates" min="1" placeholder="10" required>
+        </div>
+        <div class="col-md-4">
+          <label for="TotalDurationDays" class="form-label"> Total training days </label>
+          <input type="number" class="form-control" id="TotalDurationDays" name="totalDurationDays" min="1" placeholder="3" required>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary"> Submit </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<footer class="container-fluid footer">
+  <div class="bg-light text-center p-4">
+    © 2021 Copyright:
+    <img class="footer__logo" src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
+  </div>
+</footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+  window.onload = () => {
+    document.getElementById("RequirementReceivedData").valueAsDate = new Date();
+
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById("RequestedTrainingStartDate").setAttribute('min', today);
+  }
+
+  /*let data = { requestedBy: $("#RequestedBy"), requestedIn: $("#RequestedIn"), relatedVertical: $("#RelatedVertical"),
+      technology: $("#Technology"), description: $("#Description"), proposedStartDate: $("#ProposedStartDate"),
+      totalCandidates: $("#TotalCandidates"), timeZone: $("#TimeZone"), durationDays: $("#DurationDays") };*/
+
+  const serializeForm = form => JSON.stringify(
+          Array.from(new FormData(form).entries())
+                  .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+  );
+
+  $('#trainingRequestForm').on('submit', function(event) {
+    //event.preventDefault();
+    const data = serializeForm(this);
+
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8081/saveTrainingRequest',
+      dataType: 'json',
+      data: data,
+      contentType: 'application/json',
+      success: function(data) {
+        alert(data);
+      },
+    });
+  });
+</script>
+</body>
 </html>
