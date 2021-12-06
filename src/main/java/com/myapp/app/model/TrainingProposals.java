@@ -20,10 +20,6 @@ public class TrainingProposals {
 	private Integer ProposedDuration;
 	private JDBC jdbc = new JDBC();
 
-	public TrainingProposals(){
-		this.ProposalID = "PRO" + Math.floor(Math.random()*100+1);
-	}
-	
 	public String getProposalID() {
 		return ProposalID;
 	}

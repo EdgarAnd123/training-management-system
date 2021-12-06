@@ -60,7 +60,7 @@
       <h2 class="card-title mb-3 text-center"> New Training </h2>
       <h6 class="card-subtitle mb-5 text-muted "> Please, fill the following information in order to request a training.
         After completing this process, an LBP will contact you soon. </h6>
-      <form id="trainingRequestForm" class="row g-3" modelAttribute="trainingRequest" th:action="@{dashboard}">
+      <form id="trainingRequestForm" class="row g-3" modelAttribute="trainingRequirementMaster">
         <div class="col-md-4">
           <label for="RequirementUser" class="form-label"> Requested by </label>
           <input type="text" class="form-control" id="RequirementUser" name="requirementUser" placeholder="John Smith" required>
@@ -144,7 +144,7 @@
   );
 
   $('#trainingRequestForm').on('submit', function(event) {
-    //event.preventDefault();
+    event.preventDefault();
     const data = serializeForm(this);
 
     $.ajax({
@@ -153,9 +153,12 @@
       dataType: 'json',
       data: data,
       contentType: 'application/json',
-      success: function(data) {
-        alert(data);
+      success: function() {
+        location.href = "http://localhost:8081/dashboard"
       },
+      error: function() {
+        location.href = "http://localhost:8081/dashboard"
+      }
     });
   });
 </script>

@@ -28,10 +28,6 @@ public class TrainingRequirementMaster {
 	private String TrainingTimeZone;
 	private Integer TotalDurationDays;
 	private JDBC jdbc = new JDBC();
-
-	public TrainingRequirementMaster(){
-		this.RequirementID = "TRM" + Math.floor(Math.random()*100+1);
-	}
 	
 	public String getRequirementID() {
 		return RequirementID;
