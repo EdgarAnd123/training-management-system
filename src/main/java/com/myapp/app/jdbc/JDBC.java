@@ -8,10 +8,12 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.myapp.app.mapper.ExecutionMapper;
 import com.myapp.app.mapper.MemberMapper;
+import com.myapp.app.mapper.ParticipantMapper;
 import com.myapp.app.mapper.ProposalMapper;
 import com.myapp.app.mapper.RequirementMapper;
 import com.myapp.app.mapper.VerticalMapper;
 import com.myapp.app.model.LDMemberData;
+import com.myapp.app.model.Participant;
 import com.myapp.app.model.TrainingExecutionMaster;
 import com.myapp.app.model.TrainingProposals;
 import com.myapp.app.model.TrainingRequirementMaster;
@@ -22,7 +24,7 @@ public class JDBC {
 	JdbcTemplate temp;
 
 	public JDBC() {
-		ApplicationContext context = new ClassPathXmlApplicationContext("WEB-INF/spring-config.xml");
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring-config.xml");
 		temp = (JdbcTemplate) context.getBean("mytemp");
 	}
 
@@ -88,4 +90,13 @@ public class JDBC {
 
 		return temp.update(INSERT_QUERY, trainingProposal);
 	}
+	
+	public List<Participant> getAllTrainingParticipant() {
+		
+		//Select * from TrainingParticipantData
+		List<Participant> allParticipants = temp.query("Select * from TrainingParticipantData", new ParticipantMapper());
+		return allParticipants;
+	}
+	
+	
 }
