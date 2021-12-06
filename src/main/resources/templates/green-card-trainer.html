@@ -74,88 +74,90 @@
               <div class="row p-2">
                 <div class="col-md-4 mb-2">
                   <label for="RequirementUser" class="form-label"> Requested by </label>
-                  <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="Kenneth Montz" disabled>
+                  <input type="text" class="form-control" id="RequirementUser" name="requirementUser" th:value="${trainingRequestDetails.RequirementUser}" disabled>
                 </div>
                 <div class="col-md-4 mb-2">
                     <label for="RequirementUser" class="form-label"> Vertical master </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="Insurance" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserVertical" th:value="${trainingRequestDetails.RequirementUserVertical}" disabled>
                 </div>
     
                 <div class="col-md-4 mb-2">
                     <label for="RequirementUser" class="form-label"> Technology </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="VueJS & Firebase" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="trainingArea" th:value="${trainingRequestDetails.TrainingArea}" disabled>
                 </div>
     
                 <div class="col-md-12 mb-2">
                     <label for="RequirementUser" class="form-label"> Training Description </label>
-                    <textarea class="form-control form__textarea" id="RequirementUser" name="requirementUserName" rows="5" disabled>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum placeat harum itaque facilis sequi nam magnam veniam quis. </textarea>
+                    <textarea class="form-control form__textarea" id="RequirementUser" name="trainingDescription" rows="5" th:utext="${trainingRequestDetails.TrainingDescription}"  disabled> </textarea>
                 </div>
     
                 <div class="col-md-6 mb-2">
                     <label for="RequirementReceivedData" class="form-label"> Received date </label>
-                    <input type="text" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" value="2022-2-16" disabled>
+                    <input type="text" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" th:value="${trainingRequestDetails.RequirementReceivedData}" disabled>
                 </div>
     
                 <div class="col-md-6 mb-2">
                     <label for="RequestedTrainingStartDate" class="form-label"> Start date </label>
-                    <input type="text" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" value="2022-2-16" disabled>
+                    <input type="text" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" th:value="${trainingRequestDetails.RequestedTrainingStartDate}" disabled>
                 </div>
     
                 <div class="col-md-6 mb-2">
                     <label for="RequirementUser" class="form-label"> Time Zone </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="(GMT-08:00) Pacific Time (US & Canada)" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="trainingTimeZone" th:value="${trainingRequestDetails.TrainingTimeZone}" disabled>
                 </div>
     
                 <div class="col-md-3 mb-2">
                     <label for="RequirementUser" class="form-label"> Candidates </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="16" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="totalCandidates" th:value="${trainingRequestDetails.TotalCandidates}" disabled>
                 </div>
     
                 <div class="col-md-3 mb-2">
                     <label for="RequirementUser" class="form-label"> Training days </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="10" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="totalDurationDays" th:value="${trainingRequestDetails.TotalDurationDays}" disabled>
                 </div>
               </div>
             </div>
             <div class="col-lg-6 card rounded p-4">
-                <form class="row g-3">
-                    <h3> VueJS & Firebase </h3>
-                    <div class="col-12">
-                      <legend class="col-form-label pt-0"> Do you accept to be in charge of this training? </legend>
-                        <div class="form-check">
-                          <input class="form-check-input" onclick="hideShowElements(true)" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                          <label class="form-check-label" for="gridRadios1"> Yes </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" onclick="hideShowElements(false)" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                          <label class="form-check-label" for="gridRadios2"> No </label>
-                        </div>
+                <h3> VueJS & Firebase </h3>
+                <div class="col-12">
+                    <legend class="col-form-label pt-0"> Do you accept to be in charge of this training? </legend>
+                    <div class="form-check">
+                        <input class="form-check-input" onclick="hideShowElements(true)" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
+                        <label class="form-check-label" for="gridRadios1"> Yes </label>
                     </div>
-
+                    <div class="form-check">
+                        <input class="form-check-input" onclick="hideShowElements(false)" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                        <label class="form-check-label" for="gridRadios2"> No </label>
+                    </div>
+                </div>
+                <form id="trainingProposalForm" class="row g-3" modelAttribute="trainingProposal" th:action="@{dashboard}">
                     <div id="form__message" class="col-12 d-none">
                       <label for="TrainingDescription" class="form-label"> Please, detail your reasons: </label> <br>
-                      <textarea id="TrainingDescription" class="form-control form__textarea" name="trainingDescription" rows="3" cols="50" placeholder="I cannot achieve this because of..." required> </textarea>
+                      <textarea id="TrainingDescription" class="form-control form__textarea" name="rejectDescription" rows="3" cols="50" placeholder="I cannot achieve this because of..." required> </textarea>
                     </div>
+
+                    <input type="hidden" id="ExecutionID" name="executionID" value="TRM001">
+                    <input type="hidden" id="MemberID" name="memberID" value="MEM01">
 
                     <div id="form__inputs" class="row g-2">
                       <div class="col-md-6">
-                        <label for="availableDate" class="form-label"> Available date </label>
-                        <input type="date" class="form-control" id="availableDate" name="availableDate" required>
+                        <label for="ProposedDate" class="form-label"> Available date </label>
+                        <input type="date" class="form-control" id="ProposedDate" name="proposedDate" required>
+                      </div>
+
+                      <div class="col-md-6">
+                        <label for="ProposedDuration" class="form-label"> Total training days </label>
+                        <input type="number" class="form-control" id="ProposedDuration" name="proposedDuration" min="1" placeholder="3" required>
                       </div>
         
-                      <div class="col-md-6">
-                        <label for="TotalDurationDays" class="form-label"> Total training days </label>
-                        <input type="number" class="form-control" id="TotalDurationDays" name="totalDurationDays" min="1" placeholder="3" required>
-                      </div>
+                      <!--<div class="col-md-6">
+                        <label for="ProposedTime2" class="form-label"> Starting hour </label>
+                        <input type="time" class="form-control" id="ProposedTime2" name="proposedTime" required>
+                      </div>-->
         
                       <div class="col-md-6">
-                        <label for="availableHours" class="form-label"> Starting hour </label>
-                        <input type="time" class="form-control" id="availableHours" name="availableHours" placeholder="John Smith" required>
-                      </div>
-        
-                      <div class="col-md-6">
-                        <label for="availableHours" class="form-label"> Ending hour </label>
-                        <input type="time" class="form-control" id="availableHours" name="availableHours" placeholder="John Smith" required>
+                        <label for="ProposedTime" class="form-label"> Ending hour </label>
+                        <input type="time" class="form-control" id="ProposedTime" name="proposedTime" required>
                       </div>
                     </div>
   
@@ -175,5 +177,29 @@
       </div>
     </footer>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script>
+
+      const serializeForm = form => JSON.stringify(
+          Array.from(new FormData(form).entries())
+              .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+      );
+
+      $('#trainingProposalForm').on('submit', function(event) {
+          event.preventDefault();
+          const data = serializeForm(this);
+
+          $.ajax({
+              type: 'POST',
+              url: 'http://localhost:8081/trainingProposal/save',
+              dataType: 'json',
+              data: data,
+              contentType: 'application/json',
+              success: function(data) {
+                  alert(data);
+              }
+          });
+      });
+  </script>
 </html>
