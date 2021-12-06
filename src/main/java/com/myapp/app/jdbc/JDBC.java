@@ -102,6 +102,13 @@ public class JDBC {
 		List<TrainingExecutionMaster> ex =  temp.query("Select * from TrainingExecutionMaster where RequirementID = '" + id +"'", new ExecutionMapper());
 		return ex;
 	}
+
+	public List<Participant> getAllTrainingParticipantsByRequirementID(String id) {
+		//Select * from TrainingParticipantData
+		List<Participant> allParticipants = temp.query("Select * from TrainingParticipantData where RequirementID = '" +id + "'", new ParticipantMapper());
+		return allParticipants;
+	}
+
 	
 	
 }

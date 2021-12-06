@@ -61,57 +61,61 @@
         </div>
       </nav>
     </header>
+    
     <div class="d-flex justify-content-center wrapper">
+    
       <div class="card card-height container align-self-center">
         <div class="card-body">
+        
           <h2 class="card-title mb-3"> Training details </h2>
           <div class="row">
             <div class="col-lg-6">
               <div class="row p-2">
                 <div class="col-md-4 mb-2">
                   <label for="RequirementUser" class="form-label"> Requested by </label>
-                  <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="Kenneth Montz" disabled>
+                  <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" th:value="${r.RequirementUser}" disabled>
                 </div>
                 <div class="col-md-4 mb-2">
                     <label for="RequirementUser" class="form-label"> Vertical master </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="Insurance" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" th:value="${r.getVerticalMasterName()}" disabled>
                 </div>
     
                 <div class="col-md-4 mb-2">
                     <label for="RequirementUser" class="form-label"> Technology </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="VueJS & Firebase" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" th:value="${r.TrainingArea}" disabled>
                 </div>
     
                 <div class="col-md-12 mb-2">
                     <label for="RequirementUser" class="form-label"> Training Description </label>
-                    <textarea class="form-control form__textarea" id="RequirementUser" name="requirementUserName" rows="5" disabled>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum placeat harum itaque facilis sequi nam magnam veniam quis. </textarea>
+                    <textarea class="form-control form__textarea" id="RequirementUser" name="requirementUserName" rows="5" disabled th:field="*{r.TrainingDescription}"></textarea>
                 </div>
     
                 <div class="col-md-6 mb-2">
                     <label for="RequirementReceivedData" class="form-label"> Received date </label>
-                    <input type="text" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" value="2022-2-16" disabled>
+                    <input type="text" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" th:value="${r.RequirementReceivedData}" disabled>
                 </div>
     
                 <div class="col-md-6 mb-2">
                     <label for="RequestedTrainingStartDate" class="form-label"> Start date </label>
-                    <input type="text" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" value="2022-2-16" disabled>
+                    <input type="text" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" th:value="${r.RequestedTrainingStartDate}" disabled>
                 </div>
     
                 <div class="col-md-6 mb-2">
                     <label for="RequirementUser" class="form-label"> Time Zone </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="(GMT-08:00) Pacific Time (US & Canada)" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" th:value="${r.TrainingTimeZone}" disabled>
                 </div>
     
                 <div class="col-md-3 mb-2">
                     <label for="RequirementUser" class="form-label"> Candidates </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="5" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" th:value="${r.TotalCandidates}"disabled>
                 </div>
     
                 <div class="col-md-3 mb-2">
                     <label for="RequirementUser" class="form-label"> Training days </label>
-                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName" value="10" disabled>
+                    <input type="text" class="form-control" id="RequirementUser" name="requirementUserName"th:value="${r.TotalDurationDays}" disabled>
                 </div>
               </div>
+              <a th:href="dashboard"><button class="btn btn-primary">Go Back</button></a>
             </div>
             <div class="col-lg-6 card rounded p-4">
               <h4> Trainer </h4>
@@ -127,11 +131,11 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <th scope="row"> A73478 </th>
-                    <td> Mahesh Rajput </td>
-                    <td> +20333678 </td>
-                    <td> mahesh.rajput@atos.net </td>
-                    <td> Pune, India </td>
+                    <th scope="row" th:utext="${e.getMemberObject().MemberID}"></th>
+                    <td th:utext="${e.getMemberObject().MemberName}"> Mahesh Rajput </td>
+                    <td th:utext="${e.getMemberObject().MemberContact}"> +20333678 </td>
+                    <td th:utext="${e.getMemberObject().MemberEmail}"> mahesh.rajput@atos.net </td>
+                    <td th:utext="${e.getMemberObject().MemberLocation}"> Pune, India </td>
                   </tr>
                 </tbody>
               </table>         

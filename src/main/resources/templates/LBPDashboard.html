@@ -141,7 +141,7 @@
 									th:utext="${'User:  ' + r.RequirementUser+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 								
 								<div class="btn more" th:classappend="${r.getStatus()}">
-									<a th:href="@{'bluecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>
+									<a th:href="@{'purplecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>
 								</div>
 								
 							</div>

@@ -8,7 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-@Entity
+import com.myapp.app.jdbc.JDBC;
+
 public class TrainingExecutionMaster {
 
 	@Id
@@ -20,6 +21,7 @@ public class TrainingExecutionMaster {
 	private String Trainer;
 	private Integer TotalHRS;
 	private Integer TotalParticipantsAllowed;
+	private JDBC jdbc = new JDBC();
 	
 	public String getRequirementID() {
 		return RequirementID;
@@ -70,7 +72,9 @@ public class TrainingExecutionMaster {
 		ProposalID = proposalID;
 	}
 	
-	
+	public LDMemberData getMemberObject() {
+		return jdbc.getMemberById(Trainer);
+	}
 	
 
 }

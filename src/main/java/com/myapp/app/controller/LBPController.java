@@ -77,12 +77,11 @@ public class LBPController {
 		return "LBPBlue";
 	}
 	
-	@RequestMapping("/purple-card")
-	public String showAllParticipants(Model model) {
-		
-		
-		
-		List<Participant> list = new JDBC().getAllTrainingParticipant();
+	@RequestMapping("/purplecard")
+	public String showAllParticipants(Model model, @RequestParam String id) {
+		model.addAttribute("r",service.getrequirement(id));
+		model.addAttribute("e", service.getExecutionFromRequirementID(id));
+		List<Participant> list =service.getAllTrainingParticipantsByRequirementID(id);
 		model.addAttribute("participants", list);
 		
 		return "purple-card";

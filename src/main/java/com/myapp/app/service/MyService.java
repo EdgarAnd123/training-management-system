@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.myapp.app.jdbc.JDBC;
 import com.myapp.app.model.LDMemberData;
+import com.myapp.app.model.Participant;
 import com.myapp.app.model.TrainingRequirementMaster;
 
 
@@ -45,5 +46,15 @@ public class MyService {
 	public List<VerticalMaster> getAllVerticalMaster(){
 		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
 		return jdbc.getAllVerticalMaster();
+	}
+
+	public Object getExecutionFromRequirementID(String id) {
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+		return jdbc.getExecutionById(id);
+	}
+
+	public List<Participant> getAllTrainingParticipantsByRequirementID(String id) {
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+		return jdbc.getAllTrainingParticipantsByRequirementID(id);
 	}
 }

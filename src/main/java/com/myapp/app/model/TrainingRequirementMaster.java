@@ -100,6 +100,7 @@ public class TrainingRequirementMaster {
 		return v == null ? "" : v.getVerticalName();
 	}
 	
+	
 	public List<TrainingProposals> getProposalList() {
 		List<TrainingProposals> p = jdbc.getProposalsByRequirementId(RequirementID);
 		return p;
