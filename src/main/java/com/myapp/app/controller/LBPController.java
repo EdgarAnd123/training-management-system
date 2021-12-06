@@ -1,5 +1,7 @@
 package com.myapp.app.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myapp.app.POJO.MessageRequirementForm;
 import com.myapp.app.POJO.TrainersRequestForm;
+import com.myapp.app.jdbc.JDBC;
+import com.myapp.app.model.Participant;
 import com.myapp.app.service.MyService;
 
 @Controller
@@ -70,6 +74,17 @@ public class LBPController {
 		model.addAttribute("alerttype","success");
 		model.addAttribute("alertmessage","Request Successfuly Sent to Chosen Trainers!");
 		return "LBPBlue";
+	}
+	
+	@RequestMapping("/purple-card")
+	public String showAllParticipants(Model model) {
+		
+		
+		
+		List<Participant> list = new JDBC().getAllTrainingParticipant();
+		model.addAttribute("participants", list);
+		
+		return "purple-card";
 	}
 	
 

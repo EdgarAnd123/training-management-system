@@ -3,6 +3,7 @@ package com.myapp.app.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.myapp.app.model.VerticalMaster;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,4 +42,8 @@ public class MyService {
 		return jdbc.getRequirementById(id);
 	}
 
+	public List<VerticalMaster> getAllVerticalMaster(){
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+		return jdbc.getAllVerticalMaster();
+	}
 }

@@ -18,6 +18,63 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 	integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
 	crossorigin="anonymous"></script>
+<script>
+	$(document).ready(function() {
+
+		$("#new").click(function() {
+			$(".new").show();
+			$(".process").css("display", "none");
+			$(".confirmed").css("display", "none");
+			$(".rejected").css("display", "none");
+		});
+
+		$("#process").click(function() {
+			$(".process").show();
+			$(".new").css("display", "none");
+			$(".confirmed").css("display", "none");
+			$(".rejected").css("display", "none");
+		});
+
+		$("#confirmed").click(function() {
+			$(".confirmed").show();
+			$(".new").css("display", "none");
+			$(".process").css("display", "none");
+			$(".rejected").css("display", "none");
+		});
+
+		$("#rejected").click(function() {
+			$(".rejected").show();
+			$(".new").css("display", "none");
+			$(".confirmed").css("display", "none");
+			$(".process").css("display", "none");
+		});
+
+		$("#all").click(function() {
+			$(".new").show();
+			$(".process").show();
+			$(".confirmed").show();
+			$(".rejected").show();
+		});
+		
+		$("#searchbar").on('keyup',function() {
+			  var value = $(this).val().toLowerCase();
+
+			  $(".card").each(function() {
+				  var cardTitle = $(this).find('.card-title').text().toLowerCase();
+				  var cardText = $(this).find('.card-text').text().toLowerCase();
+				  var cardSubtitle = $(this).find('.card-subtitle').text().toLowerCase();
+		          var boolShowSum = parseInt(cardText.indexOf(value)) + parseInt(cardTitle.indexOf(value)) + parseInt(cardSubtitle.indexOf(value));
+		        if (boolShowSum > -3) {
+			      $(this).show();
+			    } else {
+			      $(this).hide();
+			    }
+			  })
+			});	
+	});
+	
+	
+</script>
 
 </head>
 <body>

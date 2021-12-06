@@ -26,7 +26,8 @@ public class DashboardController {
 	}
 	
 	@GetMapping("/newrequest")
-	public String getNewRequest() {
+	public String getNewRequest(Model model) {
+		model.addAttribute("verticals", service.getAllVerticalMaster());
 		return "training-request";
 	}
 	
