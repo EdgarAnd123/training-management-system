@@ -71,6 +71,7 @@
 			    }
 			  })
 			});	
+		
 	});
 	
 	
@@ -87,7 +88,7 @@
 				</div>
 				<div class="row">
 					<div class="input-group col">
-						<input type="text" class="form-control" placeholder="Courses"
+						<input  type="text" id="searchbar" class="form-control" placeholder="Courses"
 							aria-label="Username" aria-describedby="basic-addon1">
 						<button class="input-group-text" id="basic-addon1">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -130,7 +131,7 @@
 							<div class="card-body">
 								<h5 class="card-title">
 									<i class="icon fas fa-book"
-										th:utext="${' '+r.RequirementID + ' ' + r.TrainingArea}"></i>
+										th:utext="${' TRM00'+r.RequirementID + ' ' + r.TrainingArea}"></i>
 								</h5>
 								<h6 class="card-subtitle mb-2 text-muted"
 									th:utext="${'Start date: ' + #dates.format(r.RequestedTrainingStartDate, 'MM/dd/yyyy')}"></h6>
@@ -138,7 +139,7 @@
 								<p class="card-text"
 									th:utext="${'Course Duration: ' + r.TotalDurationDays + ' days'}"></p>
 								<p class="card-text"
-									th:utext="${'User:  ' + r.RequirementUser+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
+									th:utext="${'User:  ' + r.RequirementUser+' - V00'+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 								
 								<div class="btn more" th:classappend="${r.getStatus()}">
 									<a th:href="@{'purplecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>

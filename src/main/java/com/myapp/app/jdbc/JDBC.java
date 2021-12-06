@@ -82,7 +82,7 @@ public class JDBC {
 	}
 
 	public int saveTrainingProposal(TrainingProposals trainingProposals) {
-		final String INSERT_QUERY = "INSERT INTO trainingproposals (ProporsalID , RequirementID, MemberID, ProposedDate, ProposedTime, ProposedDuration, ProposalStatus) values (?, ?, ?, ?, ?, ?)";
+		final String INSERT_QUERY = "INSERT INTO trainingproposals (ProposalID , RequirementID, MemberID, ProposedDate, ProposedTime, ProposedDuration, ProposalStatus) values (?, ?, ?, ?, ?, ?,?)";
 
 		Object[] trainingProposal = new Object[] { trainingProposals.getProposalID(), trainingProposals.getRequirementID(),
 				trainingProposals.getMemberID(), trainingProposals.getProposedDate(), trainingProposals.getProposedTime(),
