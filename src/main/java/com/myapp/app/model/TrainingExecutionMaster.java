@@ -14,11 +14,11 @@ public class TrainingExecutionMaster {
 	@Id
 	private String RequirementID;
 	private String ExecutionID;
+	private String ProposalID;
 	private Date ConfirmedDate;
 	private String ConfirmedTime;
 	private String Trainer;
 	private Integer TotalHRS;
-	private String ProposalStatus;
 	private Integer TotalParticipantsAllowed;
 	
 	public String getRequirementID() {
@@ -57,18 +57,19 @@ public class TrainingExecutionMaster {
 	public void setTotalHRS(Integer totalHRS) {
 		TotalHRS = totalHRS;
 	}
-	public String getProposalStatus() {
-		return ProposalStatus;
-	}
-	public void setProposalStatus(String proposalStatus) {
-		ProposalStatus = proposalStatus;
-	}
 	public Integer getTotalParticipantsAllowed() {
 		return TotalParticipantsAllowed;
 	}
 	public void setTotalParticipantsAllowed(Integer totalParticipantsAllowed) {
 		TotalParticipantsAllowed = totalParticipantsAllowed;
 	}
+	public String getProposalID() {
+		return ProposalID;
+	}
+	public void setProposalID(String proposalID) {
+		ProposalID = proposalID;
+	}
+	
 	
 	
 

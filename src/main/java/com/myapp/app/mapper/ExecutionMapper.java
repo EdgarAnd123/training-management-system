@@ -14,11 +14,11 @@ public class ExecutionMapper implements RowMapper<TrainingExecutionMaster> {
 		TrainingExecutionMaster r = new TrainingExecutionMaster();
 		r.setRequirementID(result.getString(1));
 		r.setExecutionID(result.getString(2));
-		r.setConfirmedDate(result.getDate(3));
-		r.setConfirmedTime(result.getString(4));
-		r.setTrainer(result.getString(5));
-		r.setTotalHRS(result.getInt(6));
-		r.setProposalStatus(result.getString(7));
+		r.setProposalID(result.getString(3));
+		r.setConfirmedDate(result.getDate(4));
+		r.setConfirmedTime(result.getString(5));
+		r.setTrainer(result.getString(6));
+		r.setTotalHRS(result.getInt(7));
 		r.setTotalParticipantsAllowed(result.getInt(8));
 		return r;
 		

@@ -49,7 +49,7 @@ public class JDBC {
 	}
 	
 	public List<TrainingProposals> getProposalsByExecutionId(String id) {
-		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where ExecutionID = '" + id+"'", new ProposalMapper());
+		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where RequirementID = '" + id+"'", new ProposalMapper());
 		return p;
 	}
 
@@ -82,11 +82,11 @@ public class JDBC {
 	}
 
 	public int saveTrainingProposal(TrainingProposals trainingProposals) {
-		final String INSERT_QUERY = "INSERT INTO trainingproposals (ProporsalID , ExecutionID, MemberID, ProposedDate, ProposedTime, ProposedDuration) values (?, ?, ?, ?, ?, ?)";
+		final String INSERT_QUERY = "INSERT INTO trainingproposals (ProporsalID , RequirementID, MemberID, ProposedDate, ProposedTime, ProposedDuration, ProposalStatus) values (?, ?, ?, ?, ?, ?)";
 
-		Object[] trainingProposal = new Object[] { trainingProposals.getProposalID(), trainingProposals.getExecutionID(),
+		Object[] trainingProposal = new Object[] { trainingProposals.getProposalID(), trainingProposals.getRequirementID(),
 				trainingProposals.getMemberID(), trainingProposals.getProposedDate(), trainingProposals.getProposedTime(),
-				trainingProposals.getProposedDuration() };
+				trainingProposals.getProposedDuration(), "Not Confirmed" };
 
 		return temp.update(INSERT_QUERY, trainingProposal);
 	}

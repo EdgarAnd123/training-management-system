@@ -34,8 +34,9 @@ public class LBPController {
 	}
 	
 	@GetMapping("dashboard")
-	public String getLBPDashboard()
+	public String getLBPDashboard(Model model)
 	{
+		model.addAttribute("reqs", service.getrequiremetsinlist());
 		return "LBPDashboard";
 	}
 	

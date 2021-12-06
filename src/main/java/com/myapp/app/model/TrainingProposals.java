@@ -13,10 +13,11 @@ public class TrainingProposals {
 	@Column(name = "ProporsalID")
 	private String ProposalID;
 
-	private String ExecutionID;
+	private String RequirementID;
 	private String MemberID;
 	private Date ProposedDate;
 	private String ProposedTime;
+	private String ProposalStatus;
 	private Integer ProposedDuration;
 	private JDBC jdbc = new JDBC();
 
@@ -26,13 +27,19 @@ public class TrainingProposals {
 	public void setProposalID(String proposalID) {
 		ProposalID = proposalID;
 	}
-	public String getExecutionID() {
-		return ExecutionID;
-	}
-	public void setExecutionID(String executionID) {
-		ExecutionID = executionID;
-	}
 	
+	public String getRequirementID() {
+		return RequirementID;
+	}
+	public void setRequirementID(String requirementID) {
+		RequirementID = requirementID;
+	}
+	public String getProposalStatus() {
+		return ProposalStatus;
+	}
+	public void setProposalStatus(String proposalStatus) {
+		ProposalStatus = proposalStatus;
+	}
 	public String getMemberID() {
 		return MemberID;
 	}
