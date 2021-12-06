@@ -126,7 +126,7 @@
 			<table>
 				<tr class="title-tr" th:each="req : ${reqs}">
 					<td th:each="r, iterationStatus : ${req}">
-						<div class="new card card-course m-1">
+						<div class="card card-course m-1" th:classappend="${r.getStatus()}">
 							<div class="card-body">
 								<h5 class="card-title">
 									<i class="icon fas fa-book"
@@ -140,14 +140,17 @@
 								<p class="card-text"
 									th:utext="${'User:  ' + r.RequirementUser+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 								
-								<div class="btn more">
+								<div class="btn more" th:classappend="${r.getStatus()}">
 									<a th:href="@{'bluecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>
 								</div>
 								
 							</div>
 							
 							<div class="wrap">
-								<span class="ribbon">New</span>
+								<span class="ribbon" th:if="${r.getStatus() == 'new'}">New</span>
+								<span class="ribbon"th:if="${r.getStatus() == 'confirmed'}">Confirmed</span>
+								<span class="ribbon" th:if="${r.getStatus() == 'process'}">In Process</span>
+								<span class="ribbon" th:if="${r.getStatus() == 'rejected'}" >Rejected</span>
 							</div>
 						</div>
 					</td>

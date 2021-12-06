@@ -101,8 +101,19 @@ public class TrainingRequirementMaster {
 	}
 	
 	public List<TrainingProposals> getProposalList() {
-		List<TrainingProposals> p = jdbc.getProposalsByExecutionId(RequirementID);
+		List<TrainingProposals> p = jdbc.getProposalsByRequirementId(RequirementID);
 		return p;
+	}
+	
+	
+	public String getStatus() {
+		if(this.getExecutionJDBC() != null) {
+			return "confirmed";
+		} else if(!this.getProposalList().isEmpty()) {
+			return "process";
+		} else {
+			return "new";
+		}
 	}
 
 }

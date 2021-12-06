@@ -20,7 +20,7 @@
 	background: #fc4c4c;
 	box-shadow: 0 0 0 3px #F8463F, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.rejected .icon{
+.rejected i{
 	color: #fc4c4c;
 }
 .rejected .more{
@@ -31,7 +31,7 @@
 	background: #5185f5;
 	box-shadow: 0 0 0 3px #5185f5, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.new .icon{
+.new i{
 	color: #5185f5;
 }
 .new .more{
@@ -42,7 +42,7 @@
 	background: #9143cc;
 	box-shadow: 0 0 0 3px #9143cc, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.confirmed .icon{
+.confirmed i{
 	color: #9143cc;
 }
 .confirmed .more{
@@ -53,7 +53,7 @@
 	background: #57DD43;
 	box-shadow: 0 0 0 3px #57DD43, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.process .icon{
+.process i{
 	color: #57DD43;
 }
 .process .more{

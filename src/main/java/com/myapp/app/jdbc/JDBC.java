@@ -34,7 +34,7 @@ public class JDBC {
 	} 
 
 	public TrainingExecutionMaster getExecutionById(String id) {
-		List<TrainingExecutionMaster> ex =  temp.query("Select * from TrainingExecutionMaster where RequirementID = " + id, new ExecutionMapper());
+		List<TrainingExecutionMaster> ex =  temp.query("Select * from TrainingExecutionMaster where RequirementID = '" + id +"'", new ExecutionMapper());
 		return ex.isEmpty() ? null : ex.get(0);
 	}
 
@@ -48,7 +48,7 @@ public class JDBC {
 		return verticalList;
 	}
 	
-	public List<TrainingProposals> getProposalsByExecutionId(String id) {
+	public List<TrainingProposals> getProposalsByRequirementId(String id) {
 		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where RequirementID = '" + id+"'", new ProposalMapper());
 		return p;
 	}
@@ -96,6 +96,11 @@ public class JDBC {
 		//Select * from TrainingParticipantData
 		List<Participant> allParticipants = temp.query("Select * from TrainingParticipantData", new ParticipantMapper());
 		return allParticipants;
+	}
+
+	public List<TrainingExecutionMaster> getExecutionsByRequirementId(String id) {
+		List<TrainingExecutionMaster> ex =  temp.query("Select * from TrainingExecutionMaster where RequirementID = '" + id +"'", new ExecutionMapper());
+		return ex;
 	}
 	
 	
