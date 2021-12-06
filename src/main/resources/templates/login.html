@@ -21,25 +21,38 @@
 	</div>
     <div class="d-flex align-items-center justify-content-center" style="margin-top: 10vh;">
       <div class="card" style="width: 18rem; border-radius: 1rem; border-width: .1rem;">
-      <form>
+      <form method="post" action="../../dashboard.html" id="form">
         <div class="mb-3 form-control-sm; col text-center">
-        <img src="../../assets/Avatar_icon.jpg" style="width: 60px;" alt="User">
         <br/>
-        <a>Welcome back!</a>
+        <a style="font-size: 2em;">Welcome to Atos</a>
+        <br>
+        <a>Training Management System</a>
         </div>
-        <div class="mb-3 form-control-sm">
-          <label for="email" class="form-label">Email address</label>
+        <div class="mb-3 form-control-sm" align="center">
+          <label for="email" class="form-label" style="font-weight: bold;">Email address</label>
           <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
           <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
         </div>
-        <div class="mb-3 form-control-sm">
-          <label for="password" class="form-label">Password</label>
+        <div class="mb-3 form-control-sm" align="center">
+          <label for="password" class="form-label" style="font-weight: bold;">Password</label>
           <input type="password" class="form-control" id="password">
         </div>
         <div class="mb-3 form-control-sm; col text-center">
         <button type="submit" class="btn btn-primary">LOGIN</button>
       </div>
       </form>
+      <script>
+      const email = document.getElementById("email");
+      const password = document.getElementById("password");
+      const form = document.getElementById("form");
+      form.addEventListener("submit", e=>{
+    	  e.preventDefault()
+    	  if(email.value !="employees@atos.net" || password.value != "atos123"){
+			  alert("Wrong email or password, please try again")
+		  }    	  
+      })
+      
+      </script>
     </div>
     </div>
     <footer style="position: absolute; bottom: 0; width: 100%;">
