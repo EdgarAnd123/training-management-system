@@ -136,28 +136,42 @@
 						</div>
 						<!-- Modal -->
 								<div class="modal fade" th:id="'modal'+${r.RequirementID}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-								  <div class="modal-dialog" role="document">
+								  <div class="modal-dialog  modal-dialog-scrollable" role="document">
 								    <div class="modal-content">
 								      <div class="modal-header">
 								        <h5 class="modal-title">Proposal</h5>
 								        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 								      </div>
 								      <div class="modal-body">
-								      	<div th:if="${r.getProposalObject() != null}">
-								      	
-									        <h6 class="card-subtitle mb-2 text-muted"
-												th:utext="${r.getProposalObject().ProposalID}"></h6>
-											<p class="card-text"
-												th:utext="${'Proposed Date: ' + #dates.format(r.getProposalObject().ProposedDate, 'MM/dd/yyyy')}"></p>
-											<p class="card-text"
-												th:utext="${'Proposed Time ' + r.getProposalObject().ProposedTime }"></p>
-											<p class="card-text"
-												th:utext="${'Proposed Duration: ' + r.getProposalObject().ProposedDuration + ' days'}"></p>
-											<p class="card-text"
-												th:utext="${r.getProposalObject().getMemberObject() == null ? 'Member User:  ' + r.getProposalObject().MemberID : 'Member User:  ' + r.getProposalObject().MemberID+' - '+ r.getProposalObject().getMemberObject().MemberName  }"></p>
+								      	<div th:if="${not #lists.isEmpty(r.getProposalList())}">
+								      		<th:block th:each="p : ${r.getProposalList()}">
+									      		<div class="card">
+									      			<div class="card-body">
+														<h5 class="card-title">
+															<div class="row">
+																<div class="col-8">
+																	<i class="icon fas fa-book"
+																		th:utext="${'Proposal ' + p.ProposalID}"></i>
+																</div>
+																<div class="col">
+																	<div class="float-right btn btn-danger">ACCEPT</div>
+																</div>
+															</div>
+														</h5> 
+												        <h6 class="card-subtitle mb-2 text-muted"
+															th:utext="${p.getMemberObject() == null ? 'Member User:  ' + p.MemberID : 'Member User:  ' + p.MemberID+' - '+ p.getMemberObject().MemberName  }"></h6>
+														<p class="card-text"
+															th:utext="${'Proposed Date: ' + #dates.format(p.ProposedDate, 'MM/dd/yyyy')}"></p>
+														<p class="card-text"
+															th:utext="${'Proposed Time: ' + p.ProposedTime }"></p>
+														<p class="card-text"
+															th:utext="${'Proposed Duration: ' + p.ProposedDuration + ' days'}"></p>
+									     			</div>
+									     		</div>
+								     		<th:block>
 								     	</div>  
-								     	<div th:unless="${r.getProposalObject()!=null}">
-								     		No Proposal Yet
+								     	<div th:unless="${not #lists.isEmpty(r.getProposalList())}">
+								     		No Proposals Yet
 								     	</div>
 								      </div>
 								      <div class="modal-footer">

@@ -1,6 +1,7 @@
 package com.myapp.app.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -99,8 +100,8 @@ public class TrainingRequirementMaster {
 		return v == null ? "" : v.getVerticalName();
 	}
 	
-	public TrainingProposals getProposalObject() {
-		TrainingProposals p = jdbc.getProposalByExecutionId(RequirementID);
+	public List<TrainingProposals> getProposalList() {
+		List<TrainingProposals> p = jdbc.getProposalsByExecutionId(RequirementID);
 		return p;
 	}
 

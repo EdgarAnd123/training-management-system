@@ -48,9 +48,9 @@ public class JDBC {
 		return verticalList;
 	}
 	
-	public TrainingProposals getProposalByExecutionId(String id) {
+	public List<TrainingProposals> getProposalsByExecutionId(String id) {
 		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where ExecutionID = '" + id+"'", new ProposalMapper());
-		return p.isEmpty() ? null : p.get(0);
+		return p;
 	}
 
 	public LDMemberData getMemberById(String id) {
