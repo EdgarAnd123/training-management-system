@@ -9,17 +9,6 @@
       <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
       <link rel="stylesheet" href="css/green-card-trainer.css">
   </head>
-  <script>
-    function hideShowElements(status) {
-      if( status ) {
-        document.getElementById("form__message").classList.add('d-none'); 
-        document.getElementById("form__inputs").classList.remove('d-none'); 
-      } else {
-        document.getElementById("form__message").classList.remove('d-none'); 
-        document.getElementById("form__inputs").classList.add('d-none');
-      }
-    }
-  </script>
   <body>
     <header>
       <nav class="navbar bg-light">
@@ -130,7 +119,7 @@
                         <label class="form-check-label" for="gridRadios2"> No </label>
                     </div>
                 </div>
-                <form id="trainingProposalForm" class="row g-3" modelAttribute="trainingProposal" th:action="@{dashboard}">
+                <form id="trainingProposalForm" class="row g-3" modelAttribute="trainingProposal" novalidate>
                     <div id="form__message" class="col-12 d-none">
                       <label for="TrainingDescription" class="form-label"> Please, detail your reasons: </label> <br>
                       <textarea id="TrainingDescription" class="form-control form__textarea" name="rejectDescription" rows="3" cols="50" placeholder="I cannot achieve this because of..." required> </textarea>
@@ -149,14 +138,9 @@
                         <label for="ProposedDuration" class="form-label"> Total training days </label>
                         <input type="number" class="form-control" id="ProposedDuration" name="proposedDuration" min="1" placeholder="3" required>
                       </div>
-        
-                      <!--<div class="col-md-6">
-                        <label for="ProposedTime2" class="form-label"> Starting hour </label>
-                        <input type="time" class="form-control" id="ProposedTime2" name="proposedTime" required>
-                      </div>-->
-        
+
                       <div class="col-md-6">
-                        <label for="ProposedTime" class="form-label"> Ending hour </label>
+                        <label for="ProposedTime" class="form-label"> Starting hour </label>
                         <input type="time" class="form-control" id="ProposedTime" name="proposedTime" required>
                       </div>
                     </div>
@@ -181,6 +165,23 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <script>
 
+      window.onload = () => {
+          let requestedDate = document.getElementById("RequestedTrainingStartDate").valueAsDate;
+
+          //let today = new Date().toISOString().split('T')[0];
+          document.getElementById("ProposedDate").setAttribute('min', requestedDate);
+      }
+
+      function hideShowElements(status) {
+          if( status ) {
+              document.getElementById("form__message").classList.add('d-none');
+              document.getElementById("form__inputs").classList.remove('d-none');
+          } else {
+              document.getElementById("form__message").classList.remove('d-none');
+              document.getElementById("form__inputs").classList.add('d-none');
+          }
+      }
+
       const serializeForm = form => JSON.stringify(
           Array.from(new FormData(form).entries())
               .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
@@ -196,8 +197,11 @@
               dataType: 'json',
               data: data,
               contentType: 'application/json',
-              success: function(data) {
-                  alert(data);
+              success: function() {
+                  location.href = "http://localhost:8081/dashboard"
+              },
+              error: function() {
+                  location.href = "http://localhost:8081/dashboard"
               }
           });
       });
