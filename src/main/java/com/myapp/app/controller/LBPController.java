@@ -40,7 +40,7 @@ public class LBPController {
 		return "LBPDashboard";
 	}
 	
-	@PostMapping("/processRequirementMessage")
+	@GetMapping("/processRequirementMessage")
 	public String processMessage( Model model, MessageRequirementForm form)
 	{
 		try {

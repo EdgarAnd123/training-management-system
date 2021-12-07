@@ -57,4 +57,10 @@ public class MyService {
 		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
 		return jdbc.getAllTrainingParticipantsByRequirementID(id);
 	}
+
+	public int acceptProposal(String id) {
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+		return jdbc.acceptProposalByID(id);
+		
+	}
 }

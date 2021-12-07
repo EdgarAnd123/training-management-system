@@ -180,7 +180,7 @@
 																		th:utext="${' Proposal ' + p.ProposalID}"></i>
 																</div>
 																<div class="col">
-																	<div class="float-right btn btn-danger">ACCEPT</div>
+																	<a class="float-right btn btn-danger" th:href="@{'/acceptproposal?id='+${p.ProposalID}}">ACCEPT</a>
 																</div>
 															</div>
 														</h5>

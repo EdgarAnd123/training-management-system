@@ -52,6 +52,11 @@ public class JDBC {
 		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where RequirementID = '" + id+"'", new ProposalMapper());
 		return p;
 	}
+	
+	public TrainingProposals getProposalById(String id) {
+		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where ProposalID = '" + id+"'", new ProposalMapper());
+		return p.isEmpty() ? null : p.get(0);
+	}
 
 	public LDMemberData getMemberById(String id) {
 		List<LDMemberData> p =  temp.query("Select * from LDMemberData where MemberID = '" + id+"'", new MemberMapper());
@@ -108,6 +113,22 @@ public class JDBC {
 		List<Participant> allParticipants = temp.query("Select * from TrainingParticipantData where RequirementID = '" +id + "'", new ParticipantMapper());
 		return allParticipants;
 	}
+
+	public int acceptProposalByID(String id) {
+		final String INSERT_QUERY1 = "UPDATE TrainingProposals SET ProposalStatus = 'Confirmed' WHERE ProposalID = ?";
+		final String INSERT_QUERY2 = "INSERT INTO TrainingExecutionMaster (RequirementID , ExecutionID, ProposalID, ConfirmedDate, ConfirmedTime, Trainer, TotalHRS, TotalParticipantsAllowed) values (?, ?, ?, ?, ?, ?,?,?)";
+		temp.update(INSERT_QUERY1, new Object[] {id});
+		
+		TrainingProposals prop = getProposalById(id);
+		TrainingRequirementMaster req = getRequirementById(prop.getRequirementID());
+		
+		Object[] execution = new Object[] { prop.getRequirementID(), prop.getRequirementID(), prop.getProposalID(), prop.getProposedDate(), prop.getProposedTime(), prop.getMemberObject().getMemberID(), prop.getProposedDuration(), req.getTotalCandidates()};
+
+		return temp.update(INSERT_QUERY2, execution);
+		
+		
+	}
+	
 
 	
 	
