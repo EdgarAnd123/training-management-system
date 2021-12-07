@@ -52,11 +52,6 @@ public class JDBC {
 		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where RequirementID = '" + id+"'", new ProposalMapper());
 		return p;
 	}
-	
-	public TrainingProposals getProposalById(String id) {
-		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where ProposalID = '" + id+"'", new ProposalMapper());
-		return p.isEmpty() ? null : p.get(0);
-	}
 
 	public LDMemberData getMemberById(String id) {
 		List<LDMemberData> p =  temp.query("Select * from LDMemberData where MemberID = '" + id+"'", new MemberMapper());
@@ -70,6 +65,11 @@ public class JDBC {
 
 	public TrainingRequirementMaster getRequirementById(String id) {
 		List<TrainingRequirementMaster> p =  temp.query("Select * from TrainingRequirementMaster where RequirementID = '" + id+"'", new RequirementMapper());
+		return p.isEmpty() ? null : p.get(0);
+	}
+
+	public TrainingProposals getProposalById(String id) {
+		List<TrainingProposals> p =  temp.query("Select * from TrainingProposals where ProposalID = '" + id+"'", new ProposalMapper());
 		return p.isEmpty() ? null : p.get(0);
 	}
 
@@ -93,11 +93,11 @@ public class JDBC {
 				trainingProposals.getMemberID(), trainingProposals.getProposedDate(), trainingProposals.getProposedTime(),
 				trainingProposals.getProposedDuration(), "Not Confirmed" };
 
-		return temp.update(INSERT_QUERY, trainingProposal);
+			return temp.update(INSERT_QUERY, trainingProposal);
 	}
-	
+
 	public List<Participant> getAllTrainingParticipant() {
-		
+
 		//Select * from TrainingParticipantData
 		List<Participant> allParticipants = temp.query("Select * from TrainingParticipantData", new ParticipantMapper());
 		return allParticipants;
@@ -130,6 +130,31 @@ public class JDBC {
 	}
 	
 
-	
-	
+
+
+
+	public int updateTrainingRequirementMaster(TrainingRequirementMaster trainingRequirementMaster) {
+		final String INSERT_QUERY = "UPDATE trainingrequirementmaster SET RequirementReceivedData = ?, RequirementUser = ?, RequirementUserVertical = ?, TrainingArea = ?, TrainingDescription = ?,  RequestedTrainingStartDate = ?, TotalCandidates = ?, TrainingTimeZone = ?, TotalDurationDays = ? WHERE RequirementID = ?";
+
+		Object[] trainingRequest = new Object[] { trainingRequirementMaster.getRequirementReceivedData(),
+				trainingRequirementMaster.getRequirementUser(), trainingRequirementMaster.getRequirementUserVertical(),
+				trainingRequirementMaster.getTrainingArea(), trainingRequirementMaster.getTrainingDescription(),
+				trainingRequirementMaster.getRequestedTrainingStartDate(), trainingRequirementMaster.getTotalCandidates(),
+				trainingRequirementMaster.getTrainingTimeZone(), trainingRequirementMaster.getTotalDurationDays(),
+				trainingRequirementMaster.getRequirementID() };
+
+		return temp.update(INSERT_QUERY, trainingRequest);
+	}
+
+	public int updateTrainingProposal(TrainingProposals trainingProposals) {
+		final String INSERT_QUERY = "UPDATE trainingProposals SET RequirementID = ?, MemberID = ?, ProposedDate = ?, ProposedTime = ?, ProposedDuration = ?, RejectDescription = ? WHERE ProposalID = ?";
+
+		Object[] trainingRequest = new Object[] {
+				trainingProposals.getRequirementID(),
+				trainingProposals.getMemberID(), trainingProposals.getProposedDate(),
+				trainingProposals.getProposedTime(), trainingProposals.getProposedDuration(),
+				trainingProposals.getRejectDescription(), trainingProposals.getProposalID() };
+
+		return temp.update(INSERT_QUERY, trainingRequest);
+	}
 }

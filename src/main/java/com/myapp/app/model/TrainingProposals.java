@@ -5,20 +5,25 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.myapp.app.jdbc.JDBC;
 
 public class TrainingProposals {
 
 	@Id
-	@Column(name = "ProporsalID")
 	private String ProposalID;
 
 	private String RequirementID;
 	private String MemberID;
+
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date ProposedDate;
+
 	private String ProposedTime;
 	private String ProposalStatus;
 	private Integer ProposedDuration;
+
+	private String RejectDescription;
 	private JDBC jdbc = new JDBC();
 
 	public String getProposalID() {
@@ -64,7 +69,15 @@ public class TrainingProposals {
 	public void setProposedDuration(Integer proposdDuration) {
 		ProposedDuration = proposdDuration;
 	}
-	
+
+	public String getRejectDescription() {
+		return RejectDescription;
+	}
+
+	public void setRejectDescription(String rejectDescription) {
+		RejectDescription = rejectDescription;
+	}
+
 	public LDMemberData getMemberObject() {
 		LDMemberData p = jdbc.getMemberById(MemberID);
 		return p;

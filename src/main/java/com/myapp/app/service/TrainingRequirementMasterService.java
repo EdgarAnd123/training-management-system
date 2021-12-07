@@ -13,6 +13,12 @@ public class TrainingRequirementMasterService {
 		return jdbc.saveTrainingRequirementMaster(trainingRequirementMaster);
 	}
 
+	public int update(TrainingRequirementMaster trainingRequirementMaster) {
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+
+		return jdbc.updateTrainingRequirementMaster(trainingRequirementMaster);
+	}
+
 	public TrainingRequirementMaster getTrainingRequest(String id) {
 		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
 

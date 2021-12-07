@@ -26,15 +26,41 @@ public class TrainerProposalController {
 
         model.addAttribute("trainingRequestDetails", trainingRequest);
 
-        return "green-card-trainer";
+        return "trainingProposal";
+    }
+
+    @GetMapping("/{trainingProposal}/{trainingRequestId}")
+    public String editTrainerProposal(@PathVariable String trainingProposal, @PathVariable String trainingRequestId, Model model) {
+        TrainingProposals trainingProposals = trainerProposalService.getProposalById(trainingProposal);
+        TrainingRequirementMaster trainingRequest = trainingRequirementMasterService.getTrainingRequest(trainingRequestId);
+
+        if(trainingProposals.getProposalID().isEmpty()){
+            model.addAttribute("editingForm", false);
+        } else {
+            model.addAttribute("editingForm", true);
+        }
+
+        model.addAttribute("trainingProposalDetails", trainingProposals);
+        model.addAttribute("trainingRequestDetails", trainingRequest);
+
+        return "trainingProposal";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public String saveTrainerProposal(@RequestBody TrainingProposals trainingProposals) {
+    public String saveTrainerProposal(@RequestBody TrainingProposals trainingProposals){
         trainerProposalService.save(trainingProposals);
 
-        return "redirect:/dashboard";
+        return "LBPDashboard";
+    }
+
+    @PatchMapping(value = "/update",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public String update(@RequestBody TrainingProposals trainingProposals) {
+        trainerProposalService.update(trainingProposals);
+
+        return "dashboard";
     }
 }

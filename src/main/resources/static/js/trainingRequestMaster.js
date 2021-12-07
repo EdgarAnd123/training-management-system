@@ -1,0 +1,46 @@
+window.onload = () => {
+    document.getElementById("RequirementReceivedData").valueAsDate = new Date();
+
+    let today = new Date().toISOString().split('T')[0];
+    document.getElementById("RequestedTrainingStartDate").setAttribute('min', today);
+}
+
+const serializeForm = form => JSON.stringify(
+    Array.from(new FormData(form).entries())
+        .reduce((m, [ key, value ]) => Object.assign(m, { [key]: value }), {})
+);
+
+$('#trainingRequestForm').on('submit', function(event) {
+    event.preventDefault();
+    const data = serializeForm(this);
+
+    if(data.includes("requirementID")) {
+        $.ajax({
+            type: 'PATCH',
+            url: 'http://localhost:8081/trainingRequest/update',
+            dataType: 'json',
+            data: data,
+            contentType: 'application/json',
+            success: function() {
+                location.href = "http://localhost:8081/dashboard"
+            },
+            error: function() {
+                location.href = "http://localhost:8081/dashboard"
+            }
+        });
+    } else {
+        $.ajax({
+            type: 'POST',
+            url: 'http://localhost:8081/trainingRequest/save',
+            dataType: 'json',
+            data: data,
+            contentType: 'application/json',
+            success: function() {
+                location.href = "http://localhost:8081/dashboard"
+            },
+            error: function() {
+                location.href = "http://localhost:8081/dashboard"
+            }
+        });
+    }
+});
