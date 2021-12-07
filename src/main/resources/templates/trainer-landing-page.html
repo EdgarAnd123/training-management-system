@@ -76,7 +76,7 @@
 								<p class="card-text" th:utext="${'Course Duration: ' + r.TotalDurationDays + ' days'}"></p>
 								<p class="card-text" th:utext="${'User:  ' + r.RequirementUser+' - '+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 								<div class="btn more">
-									<a  th:href="greencard"><i class="fa fa-eye" style="color: green"></i></a>
+									<a  th:href="@{'/trainingProposal/'+${r.RequirementID}}"><i class="fa fa-eye" style="color: green"></i></a>
 								</div>
 							</div>
 							<div class="wrap">
