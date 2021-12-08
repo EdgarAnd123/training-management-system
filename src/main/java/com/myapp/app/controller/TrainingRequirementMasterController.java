@@ -4,11 +4,15 @@ import com.myapp.app.model.TrainingRequirementMaster;
 import com.myapp.app.service.MyService;
 import com.myapp.app.service.TrainingRequirementMasterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Objects;
 
 @Controller
 @RequestMapping("trainingRequest")
@@ -22,31 +26,40 @@ public class TrainingRequirementMasterController {
     @PostMapping(value = "/save",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public RedirectView save(@RequestBody TrainingRequirementMaster trainingRequirementMaster) {
-        RedirectView redirectView = new RedirectView();
-        redirectView.setUrl("dashboard");
+    public ResponseEntity<String> save(@RequestBody TrainingRequirementMaster trainingRequirementMaster) {
 
-        trainingRequirementMasterService.save(trainingRequirementMaster);
+        try {
+            trainingRequirementMasterService.save(trainingRequirementMaster);
+            return new ResponseEntity<>("Training Request was created successfully.", HttpStatus.OK);
 
-        return redirectView;
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PatchMapping(value = "/update",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public String update(@RequestBody TrainingRequirementMaster trainingRequirementMaster) {
-        trainingRequirementMasterService.update(trainingRequirementMaster);
+    public ResponseEntity<String> update(@RequestBody TrainingRequirementMaster trainingRequirementMaster) {
+        try {
+            trainingRequirementMasterService.update(trainingRequirementMaster);
 
-        return "dashboard";
+            return new ResponseEntity<>("Training Request was updated successfully.", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/{trainingRequestId}")
     public String getNewRequest(@PathVariable String trainingRequestId, Model model) {
         TrainingRequirementMaster trainingRequest = trainingRequirementMasterService.getTrainingRequest(trainingRequestId);
 
-        model.addAttribute("editingForm", true);
-        model.addAttribute("verticals", myService.getAllVerticalMaster());
-        model.addAttribute("trainingRequest", trainingRequest);
+        if (!Objects.isNull(trainingRequest)) {
+            model.addAttribute("editingForm", true);
+            model.addAttribute("verticals", myService.getAllVerticalMaster());
+            model.addAttribute("trainingRequest", trainingRequest);
+
+        }
 
         return "training-request";
     }

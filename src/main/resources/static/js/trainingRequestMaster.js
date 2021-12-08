@@ -21,11 +21,14 @@ $('#trainingRequestForm').on('submit', function(event) {
             dataType: 'json',
             data: data,
             contentType: 'application/json',
-            success: function() {
-                location.href = "http://localhost:8081/dashboard"
-            },
-            error: function() {
-                location.href = "http://localhost:8081/dashboard"
+            statusCode: {
+                200: function(){
+                    alert("Successfully saving");
+                    location.href = "http://localhost:8081/dashboard"
+                },
+                500: function() {
+                    alert("Error saving data");
+                }
             }
         });
     } else {
@@ -35,11 +38,14 @@ $('#trainingRequestForm').on('submit', function(event) {
             dataType: 'json',
             data: data,
             contentType: 'application/json',
-            success: function() {
-                location.href = "http://localhost:8081/dashboard"
-            },
-            error: function() {
-                location.href = "http://localhost:8081/dashboard"
+            statusCode: {
+                200: function(){
+                    alert("Successfully saving");
+                    location.href = "http://localhost:8081/dashboard"
+                },
+                500: function() {
+                    alert("Error saving data");
+                }
             }
         });
     }

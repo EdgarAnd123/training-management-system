@@ -23,12 +23,12 @@ public class TrainerProposalController {
     @GetMapping("/{trainingRequestId}")
     public String viewTrainerProposal(@PathVariable String trainingRequestId, Model model) {
         TrainingRequirementMaster trainingRequest = trainingRequirementMasterService.getTrainingRequest(trainingRequestId);
-
+        model.addAttribute("editingForm", false);
         model.addAttribute("trainingRequestDetails", trainingRequest);
 
         return "trainingProposal";
     }
-
+/*
     @GetMapping("/{trainingProposal}/{trainingRequestId}")
     public String editTrainerProposal(@PathVariable String trainingProposal, @PathVariable String trainingRequestId, Model model) {
         TrainingProposals trainingProposals = trainerProposalService.getProposalById(trainingProposal);
@@ -45,7 +45,7 @@ public class TrainerProposalController {
 
         return "trainingProposal";
     }
-
+*/
     @RequestMapping(value = "/save", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)

@@ -95,13 +95,12 @@
                 </div>
                 <form id="trainingProposalForm" class="row g-3" modelAttribute="trainingProposal" novalidate>
                     <div id="form__message" class="col-12 d-none">
-                      <label for="TrainingDescription" class="form-label"> Please, detail your reasons: </label> <br>
-                      <textarea id="TrainingDescription" class="form-control form__textarea" name="rejectDescription" rows="3" cols="50" placeholder="I cannot achieve this because of..." th:text="${trainingProposalDetails?.rejectDescription}" required> </textarea>
+                      <label for="RejectDescription" class="form-label"> Please, detail your reasons: </label> <br>
+                      <textarea id="RejectDescription" class="form-control form__textarea" name="rejectDescription" rows="3" cols="50" placeholder="I cannot achieve this because of..." th:text="${trainingProposalDetails?.rejectDescription}" required> </textarea>
                     </div>
 
                     <input th:if="${editingForm == true}" type="hidden" id="ProposalID" name="proposalID" th:value="${trainingProposalDetails?.proposalID}">
-
-                    <input type="hidden" id="RequirementID" name="requirementID" th:value="${trainingProposalDetails?.requirementID}">
+                    <input type="hidden" id="RequirementID" name="requirementID" th:value="${trainingRequestDetails?.requirementID}">
                     <input type="hidden" id="MemberID" name="memberID" value="1">
 
                     <div id="form__inputs" class="row g-2">
