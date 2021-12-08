@@ -46,10 +46,12 @@
       const password = document.getElementById("password");
       const form = document.getElementById("form");
       form.addEventListener("submit", e=>{
-    	  e.preventDefault()
+    	  
     	  if(email.value !="employees@atos.net" || password.value != "atos123"){
-			  alert("Wrong email or password, please try again")
-		  }    	  
+		e.preventDefault();	
+		alert("Wrong email or password, please try again")
+	  }
+	      
       })
       
       </script>
