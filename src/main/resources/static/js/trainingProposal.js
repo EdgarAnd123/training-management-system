@@ -30,7 +30,6 @@ $('#trainingProposalForm').on('submit', function(event) {
     }
 
     const formData = serializeForm(this);
-    console.log(formData);
 
     $.ajax({
         type: 'POST',
