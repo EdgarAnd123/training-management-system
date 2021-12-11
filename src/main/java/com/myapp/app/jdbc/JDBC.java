@@ -96,7 +96,7 @@ public class JDBC {
 				trainingProposals.getProposedDuration(), "Not Confirmed" };
 			
 
-		temp.update(INSERT_QUERY3, new Object[] {prop.getRequirementID()});
+		temp.update(INSERT_QUERY3, new Object[] {trainingProposals.getRequirementID()});
 		
 			return temp.update(INSERT_QUERY, trainingProposal);
 	}
