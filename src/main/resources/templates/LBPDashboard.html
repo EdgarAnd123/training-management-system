@@ -127,7 +127,7 @@
 			<table>
 				<tr class="title-tr" th:each="req : ${reqs}">
 					<td th:each="r, iterationStatus : ${req}">
-						<div class="card card-course m-1" th:classappend="${r.getStatus()}">
+						<div class="card card-course m-1" th:classappend="${r.status}">
 							<div class="card-body">
 								<h5 class="card-title">
 									<i class="icon fas fa-book"
@@ -141,19 +141,19 @@
 								<p class="card-text"
 									th:utext="${'User:  ' + r.RequirementUser+' - V00'+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 								
-								<div class="btn more" th:classappend="${r.getStatus()}">
-									<a th:if="${r.getStatus() == 'confirmed'}" th:href="@{'purplecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>
-									<a th:if="${r.getStatus() == 'new'}" th:href="@{'bluecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>
+								<div class="btn more" th:classappend="${r.status}">
+									<a th:if="${r.status == 'confirmed'}" th:href="@{'purplecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>
+									<a th:if="${r.status== 'new'}" th:href="@{'bluecard?id=' + ${r.RequirementID}}"><i class="fas fa-plus-circle"></i></a>
 								
 								</div>
 								
 							</div>
 							
 							<div class="wrap">
-								<span class="ribbon" th:if="${r.getStatus() == 'new'}">New</span>
-								<span class="ribbon"th:if="${r.getStatus() == 'confirmed'}">Confirmed</span>
-								<span class="ribbon" th:if="${r.getStatus() == 'process'}">In Process</span>
-								<span class="ribbon" th:if="${r.getStatus() == 'rejected'}" >Rejected</span>
+								<span class="ribbon" th:if="${r.status == 'new'}">New</span>
+								<span class="ribbon"th:if="${r.status == 'confirmed'}">Confirmed</span>
+								<span class="ribbon" th:if="${r.status == 'process'}">In Process</span>
+								<span class="ribbon" th:if="${r.status == 'rejected'}" >Rejected</span>
 							</div>
 						</div>
 					</td>

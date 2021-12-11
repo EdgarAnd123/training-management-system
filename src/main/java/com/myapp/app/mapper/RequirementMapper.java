@@ -20,6 +20,7 @@ public class RequirementMapper implements RowMapper<TrainingRequirementMaster> {
 		r.setTotalCandidates(result.getInt(8));
 		r.setTrainingTimeZone(result.getString(9));
 		r.setTotalDurationDays(result.getInt(10));
+		r.setStatus(result.getString(11));
 		return r;
 		
 	}

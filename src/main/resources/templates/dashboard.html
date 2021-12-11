@@ -131,7 +131,7 @@
 			<table>
 				<tr class="title-tr" th:each="req : ${reqs}">
 					<td th:each="r, iterationStatus : ${req}">
-						<div class="new card card-course m-1">
+						<div class="card card-course m-1" th:classappend="${r.status}">
 							<div class="card-body">
 								<h5 class="card-title">
 									<i class="icon fas fa-book"
@@ -145,11 +145,11 @@
 								<p class="card-text"
 									th:utext="${'User:  ' + r.RequirementUser+' - V00'+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
 								<div class="btn more">
-									<button th:unless="${r.getExecutionJDBC()!=null}" type="button" class="btn btn-primary"
+									<button th:unless="${r.status =='confirmed'}" type="button" class="btn btn-primary"
 										data-bs-toggle="modal"
 										th:attr="data-bs-target='#modal'+${r.RequirementID}">
 										Proposals</button>
-										<button th:if="${r.getExecutionJDBC()!=null}" type="button" class="btn btn-success"
+										<button th:if="${r.status == 'confirmed'}" type="button" class="btn btn-success"
 										data-bs-toggle="modal"
 										th:attr="data-bs-target='#modal'+${r.RequirementID}">
 										Execution</button>
@@ -163,13 +163,13 @@
 								role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 th:unless="${r.getExecutionJDBC()!=null}" class="modal-title">Proposal</h5>
-										<h5 th:if="${r.getExecutionJDBC()!=null}" class="modal-title">Execution</h5>
+										<h5 th:unless="${r.status == 'confirmed'}" class="modal-title">Proposal</h5>
+										<h5 th:if="${r.status == 'confirmed}" class="modal-title">Execution</h5>
 										<button type="button" class="btn-close"
 											data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
 									<div class="modal-body">
-										<div th:unless="${r.getExecutionJDBC()!=null}" th:if="${not #lists.isEmpty(r.getProposalList())}">
+										<div th:unless="${r.status == 'confirmed'}" th:if="${r.status != 'new'}">
 											<div th:each="p : ${r.getProposalList()}">
 												<div class="card">
 													<div class="card-body">
@@ -196,9 +196,9 @@
 												</div>
 											</div>
 										</div>
-										<div th:unless="${not #lists.isEmpty(r.getProposalList())}">
+										<div th:unless="${r.status == 'new'}">
 											No Proposals Yet</div>
-										<div th:if="${r.getExecutionJDBC() != null}">
+										<div th:if="${r.status == 'confirmed'}">
 											<div class="card">
 														<div class="card-body">
 															<h5 class="card-title">

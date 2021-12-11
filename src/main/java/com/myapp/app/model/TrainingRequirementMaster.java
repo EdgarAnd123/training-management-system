@@ -29,6 +29,7 @@ public class TrainingRequirementMaster {
 	private String TrainingTimeZone;
 	private Integer TotalDurationDays;
 	private JDBC jdbc = new JDBC();
+	private String status;
 	
 	public String getRequirementID() {
 		return RequirementID;
@@ -107,14 +108,12 @@ public class TrainingRequirementMaster {
 	}
 	
 	
-	public String getStatus() {
-		if(this.getExecutionJDBC() != null) {
-			return "confirmed";
-		} else if(!this.getProposalList().isEmpty()) {
-			return "process";
-		} else {
-			return "new";
-		}
+	public Integer getStatus() {
+		return TotalDurationDays;
 	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 
 }

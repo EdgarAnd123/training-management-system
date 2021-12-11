@@ -74,7 +74,7 @@ public class JDBC {
 	}
 
 	public int saveTrainingRequirementMaster(TrainingRequirementMaster trainingRequirementMaster) {
-		final String INSERT_QUERY = "INSERT INTO trainingrequirementmaster (RequirementID , RequirementReceivedData, RequirementUser, RequirementUserVertical, TrainingArea, TrainingDescription,  RequestedTrainingStartDate, TotalCandidates, TrainingTimeZone, TotalDurationDays) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		final String INSERT_QUERY = "INSERT INTO trainingrequirementmaster (RequirementID , RequirementReceivedData, RequirementUser, RequirementUserVertical, TrainingArea, TrainingDescription,  RequestedTrainingStartDate, TotalCandidates, TrainingTimeZone, TotalDurationDays, Status) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'new')";
 
 			Object[] trainingRequest = new Object[] { trainingRequirementMaster.getRequirementID(), trainingRequirementMaster.getRequirementReceivedData(),
 					trainingRequirementMaster.getRequirementUser(),
@@ -88,11 +88,16 @@ public class JDBC {
 
 	public int saveTrainingProposal(TrainingProposals trainingProposals) {
 		final String INSERT_QUERY = "INSERT INTO trainingproposals (ProposalID , RequirementID, MemberID, ProposedDate, ProposedTime, ProposedDuration, ProposalStatus) values (?, ?, ?, ?, ?, ?,?)";
-
+		final String INSERT_QUERY3 = "UPDATE TrainingRequirementMaster SET Status = 'process' WHERE RequirementID = ?";
+		
+		
 		Object[] trainingProposal = new Object[] { trainingProposals.getProposalID(), trainingProposals.getRequirementID(),
 				trainingProposals.getMemberID(), trainingProposals.getProposedDate(), trainingProposals.getProposedTime(),
 				trainingProposals.getProposedDuration(), "Not Confirmed" };
+			
 
+		temp.update(INSERT_QUERY3, new Object[] {prop.getRequirementID()});
+		
 			return temp.update(INSERT_QUERY, trainingProposal);
 	}
 
@@ -116,6 +121,7 @@ public class JDBC {
 
 	public int acceptProposalByID(String id) {
 		final String INSERT_QUERY1 = "UPDATE TrainingProposals SET ProposalStatus = 'Confirmed' WHERE ProposalID = ?";
+		final String INSERT_QUERY3 = "UPDATE TrainingRequirementMaster SET Status = 'confirmed' WHERE RequirementID = ?";
 		final String INSERT_QUERY2 = "INSERT INTO TrainingExecutionMaster (RequirementID , ExecutionID, ProposalID, ConfirmedDate, ConfirmedTime, Trainer, TotalHRS, TotalParticipantsAllowed) values (?, ?, ?, ?, ?, ?,?,?)";
 		temp.update(INSERT_QUERY1, new Object[] {id});
 		
@@ -124,6 +130,9 @@ public class JDBC {
 		
 		Object[] execution = new Object[] { prop.getRequirementID(), prop.getRequirementID(), prop.getProposalID(), prop.getProposedDate(), prop.getProposedTime(), prop.getMemberObject().getMemberID(), prop.getProposedDuration(), req.getTotalCandidates()};
 
+
+		temp.update(INSERT_QUERY3, new Object[] {prop.getRequirementID()});
+		
 		return temp.update(INSERT_QUERY2, execution);
 		
 		
