@@ -20,7 +20,7 @@
 	background: #fc4c4c;
 	box-shadow: 0 0 0 3px #F8463F, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.rejected i{
+.rejected h5{
 	color: #fc4c4c;
 }
 .rejected .more{
@@ -31,7 +31,7 @@
 	background: #5185f5;
 	box-shadow: 0 0 0 3px #5185f5, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.new i{
+.new h5{
 	color: #5185f5;
 }
 .new .more{
@@ -42,7 +42,7 @@
 	background: #9143cc;
 	box-shadow: 0 0 0 3px #9143cc, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.confirmed i{
+.confirmed h5{
 	color: #9143cc;
 }
 .confirmed .more{
@@ -53,16 +53,13 @@
 	background: #57DD43;
 	box-shadow: 0 0 0 3px #57DD43, 0px 21px 5px -18px rgba(0, 0, 0, 0.6);
 }
-.process i{
+.process h5{
 	color: #57DD43;
 }
 .process .more{
 	color: #57DD43;
 	float: right;
 }
- a:hover i {
-            transform: scale(1.5);
-        }
 
 .wrap:after {
 	width: 8px;

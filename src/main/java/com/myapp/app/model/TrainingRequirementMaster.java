@@ -23,7 +23,7 @@ public class TrainingRequirementMaster {
 	private String TrainingArea;
 	private String TrainingDescription;
 
-	@JsonFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	private Date RequestedTrainingStartDate;
 	private Integer TotalCandidates;
 	private String TrainingTimeZone;

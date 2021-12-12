@@ -91,41 +91,46 @@
 </script>
 </head>
 <body>
-	<div>
-		<nav class="navbar navbar-light bg-light">
-			<div class="container-fluid">
-				<div class="d-flex">
-					<img style="width: 50px;"
-						src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
+	<nav class="navbar navbar-light bg-white">
+		<div class="container">
+			<a th:href="@{/dashboard}">
+				<img style="width: 50px;" src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
+			</a>
+			<div class="d-flex gap-3">
+				<div class="input-group col-lg-6">
+					<input type="text" id="searchbar" class="form-control"
+						placeholder="Courses" aria-label="Username"
+						aria-describedby="basic-addon1">
+					<button class="input-group-text">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+							fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+							<path
+								d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+						</svg>
+					</button>
 				</div>
-				<div class="row">
-					<div class="input-group col">
-						<input type="text" id="searchbar" class="form-control"
-							placeholder="Courses" aria-label="Username"
-							aria-describedby="basic-addon1">
-						<button class="input-group-text">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                                <path
-									d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-                            </svg>
-						</button>
-					</div>
-					<div class="col">
-						<a th:href="newrequest"><button type="button"
-								class="btn btn-primary">New Request</button></a>
-					</div>
-				</div>
-				<div class="d-flex">
-					<a class="nav-link" href="#"><i class="fas fa-user"></i> LBP
-						Username</a>
+				<div class="col-lg-6">
+					<a th:href="newrequest"><button type="button"
+							class="btn btn-primary">New Request</button></a>
 				</div>
 			</div>
-		</nav>
-	</div>
-	<main class="p-5">
+			<div class="dropdown">
+				<a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+					<i class="fas fa-user"></i> John Doe
+				</a>
+				<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+					<li><a class="dropdown-item" th:href="@{/dashboard}"> Delivery Dashboard </a></li>
+					<li><a class="dropdown-item" th:href="@{/LBP/dashboard}"> LBP Dashboard </a></li>
+					<li><a class="dropdown-item" th:href="@{/trainerdashboard}"> Trainer Dashboard </a></li>
+					<li><hr class="dropdown-divider"></li>
+					<li><a class="dropdown-item" th:href="@{/login}"> Log out </a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	<main class="p-5 bg-light">
 		<div class="d-flex justify-content-center text-primary">
-			<h5>Requests</h5>
+			<h3> Requests </h3>
 		</div>
 		<div class="d-flex justify-content-center border p-3">
 			<table>
@@ -133,30 +138,27 @@
 					<td th:each="r, iterationStatus : ${req}">
 						<div class="card card-course m-1" th:classappend="${r.status}">
 							<div class="card-body">
-								<h5 class="card-title">
-									<i class="icon fas fa-book"
-										th:utext="${' TRM00'+r.RequirementID + ' ' + r.TrainingArea}"></i>
-								</h5>
-								<h6 class="card-subtitle mb-2 text-muted"
-									th:utext="${'Start date: ' + #dates.format(r.RequestedTrainingStartDate, 'MM/dd/yyyy')}"></h6>
-								<p class="card-text" th:utext="${r.TrainingDescription}"></p>
-								<p class="card-text"
-									th:utext="${'Course Duration: ' + r.TotalDurationDays + ' days'}"></p>
-								<p class="card-text"
-									th:utext="${'User:  ' + r.RequirementUser+' - V00'+ r.RequirementUserVertical + ' ' + r.getVerticalMasterName() }"></p>
-								<div class="btn more">
+								<h5 class="card-title" th:utext="${r.trainingArea}"></h5>
+								<h6 class="card-subtitle mb-2 text-muted fw-light" th:utext="${'TRM00' + r.requirementID}"></h6>
+								<p class="card-text my-1 h-50" th:utext="${'&lt;strong&gt;Description: &lt;/strong&gt; '+r.trainingDescription}"></p>
+								<p class="card-text my-1"
+								   th:utext="${'&lt;strong&gt;Vertical: &lt;/strong&gt; '+ r.getVerticalMasterName() + ' days'}"></p>
+								<p class="card-text my-1" th:utext="${'&lt;strong&gt;Start date: &lt;/strong&gt; '+ #dates.format(r.requestedTrainingStartDate, 'MM/dd/yyyy')}"></p>
+								<p class="card-text my-1"
+								   th:utext="${'&lt;strong&gt;Course Duration :&lt;/strong&gt; '+ r.totalDurationDays + ' days'}"></p>
+								<div class="btn more px-0">
 									<button th:unless="${r.status =='confirmed'}" type="button" class="btn btn-primary"
 										data-bs-toggle="modal"
-										th:attr="data-bs-target='#modal'+${r.RequirementID}">
+										th:attr="data-bs-target='#modal'+${r.requirementID}">
 										Proposals</button>
-										<button th:if="${r.status == 'confirmed'}" type="button" class="btn btn-success"
-										data-bs-toggle="modal"
-										th:attr="data-bs-target='#modal'+${r.RequirementID}">
-										Execution</button>
+									<button th:if="${r.status == 'confirmed'}" type="button" class="btn btn-success"
+									data-bs-toggle="modal"
+									th:attr="data-bs-target='#modal'+${r.requirementID}">
+									Execution</button>
 								</div>
 							</div>
 						</div> <!-- Modal -->
-						<div class="modal fade" th:id="'modal'+${r.RequirementID}"
+						<div class="modal fade" th:id="'modal'+${r.requirementID}"
 							tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog  modal-dialog-scrollable"
@@ -177,27 +179,28 @@
 															<div class="row">
 																<div class="col-8">
 																	<i class="icon fas fa-list"
-																		th:utext="${' Proposal ' + p.ProposalID}"></i>
+																		th:utext="${' Proposal ' + p.proposalID}"></i>
 																</div>
 																<div class="col">
-																	<a class="float-right btn btn-danger" th:href="@{'/acceptproposal?id='+${p.ProposalID}}">ACCEPT</a>
+																	<a class="float-right btn btn-danger" th:href="@{'/acceptproposal?id='+${p.proposalID}}">ACCEPT</a>
 																</div>
 															</div>
 														</h5>
 														<h6 class="card-subtitle mb-2 text-muted"
-															th:utext="${p.getMemberObject() == null ? 'Member User:  ' + p.MemberID : 'Member User:  ' + p.MemberID+' - '+ p.getMemberObject().MemberName  }"></h6>
+															th:utext="${p.getMemberObject() == null ? 'Member User:  ' + p.memberID : 'Member User:  ' + p.memberID+' - '+ p.getMemberObject().MemberName  }"></h6>
 														<p class="card-text"
-															th:utext="${'Proposed Date: ' + #dates.format(p.ProposedDate, 'MM/dd/yyyy')}"></p>
+															th:utext="${'Proposed Date: ' + #dates.format(p.proposedDate, 'MM/dd/yyyy')}"></p>
 														<p class="card-text"
-															th:utext="${'Proposed Time: ' + p.ProposedTime }"></p>
+															th:utext="${'Proposed Time: ' + p.proposedTime }"></p>
 														<p class="card-text"
-															th:utext="${'Proposed Duration: ' + p.ProposedDuration + ' days'}"></p>
+															th:utext="${'Proposed Duration: ' + p.proposedDuration + ' days'}"></p>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div th:unless="${r.status == 'new'}">
-											No Proposals Yet</div>
+										<div th:if="${r.status == 'new'}">
+											No Proposals Yet
+										</div>
 										<div th:if="${r.status == 'confirmed'}">
 											<div class="card">
 														<div class="card-body">
@@ -249,7 +252,7 @@
 			</table>
 		</div>
 	</main>
-	<footer style="bottom: 0; width: 100%; height: 10px">
+	<footer class="bg-white" style="bottom: 0; width: 100%; height: 10px">
 		<div class="text-center p-4"
 			style="background-color: rgba(0, 0, 0, 0.05);">
 			© 2021 Copyright: <img style="width: 50px;"

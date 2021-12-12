@@ -18,10 +18,14 @@ import java.util.Objects;
 @RequestMapping("trainingRequest")
 public class TrainingRequirementMasterController {
 
+    private final TrainingRequirementMasterService trainingRequirementMasterService;
+    private final MyService myService;
+
     @Autowired
-    TrainingRequirementMasterService trainingRequirementMasterService;
-    @Autowired
-    MyService myService;
+    public TrainingRequirementMasterController(TrainingRequirementMasterService trainingRequirementMasterService, MyService myService) {
+        this.trainingRequirementMasterService = trainingRequirementMasterService;
+        this.myService = myService;
+    }
 
     @PostMapping(value = "/save",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -58,9 +62,29 @@ public class TrainingRequirementMasterController {
             model.addAttribute("editingForm", true);
             model.addAttribute("verticals", myService.getAllVerticalMaster());
             model.addAttribute("trainingRequest", trainingRequest);
-
         }
 
         return "training-request";
     }
+/*
+    @DeleteMapping("/delete/{trainingRequestId}")
+    public String deleteTrainingRequest(@PathVariable String trainingRequestId) {
+
+
+        if (!Objects.isNull(trainingRequest)) {
+            model.addAttribute("editingForm", true);
+            model.addAttribute("verticals", myService.getAllVerticalMaster());
+            model.addAttribute("trainingRequest", trainingRequest);
+
+        }
+        try {
+            trainingRequirementMasterService.delete(trainingRequestId);
+
+            return new ResponseEntity<>("Training Request was updated successfully.", HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        return "training-request";
+    }*/
 }

@@ -41,17 +41,14 @@
     </header>
     <div class="d-flex justify-content-center wrapper">
       <div class="card align-self-center">
-          <h2 class="card-title mb-3 text-center p-4 bg-light" th:if="${editingForm == false}"> New Training Request </h2>
-          <h2 class="card-title mb-3 text-center p-4 bg-light" th:unless="${editingForm == false}"> Edit Training Request </h2>
-          <h6 class="card-subtitle mx-5 mb-4 text-muted"> Please, fill the following information in order to request a training.
+          <h2 class="card-title mb-0 text-center p-4 bg-primary text-white" th:if="${editingForm == false}"> New Training Request </h2>
+          <h2 class="card-title mb-0 text-center p-4 bg-light text-white" th:unless="${editingForm == false}"> Edit Training Request </h2>
+          <h6 class="card-subtitle mx-5 mt-4 text-muted"> Please, fill the following information in order to request a training.
             After completing this process, an LBP agent will be in contact with you soon. </h6>
-          <div class="pt-4 pb-5 px-5">
+          <div class="pt-4 pb-4 px-5">
             <form id="trainingRequestForm" class="row g-3" modelAttribute="trainingRequirementMaster">
               <input th:if="${editingForm == true}" type="hidden" id="RequirementID" name="requirementID" th:value="${trainingRequest?.requirementID}">
-              <div class="col-md-4">
-                <label for="RequirementUser" class="form-label"> Requested by </label>
-                <input type="text" class="form-control" id="RequirementUser" name="requirementUser" placeholder="John Smith" th:value="${trainingRequest?.requirementUser}" required>
-              </div>
+              <input type="hidden" class="form-control" id="RequirementUser" name="requirementUser" value="Martin Smith" required>
               <div class="col-md-4">
                 <label for="RequirementUserVertical" class="form-label"> Vertical master </label>
                 <select class="form-select" name="requirementUserVertical" id="RequirementUserVertical" th:value="${trainingRequest?.requirementUserVertical}" required>
@@ -71,17 +68,10 @@
                   <option value="Docker">
                 </datalist>
               </div>
-              <div class="col-12">
-                <label for="TrainingDescription" class="form-label"> Training description </label> <br>
-                <textarea id="TrainingDescription" class="form-control form__textarea" name="trainingDescription" rows="2" maxlength="100" th:text="${trainingRequest?.trainingDescription}" required> </textarea>
-              </div>
-              <div class="col-md-6">
-                <label for="RequirementReceivedData" class="form-label"> Requirement received date </label>
-                <input type="date" class="form-control" id="RequirementReceivedData" name="requirementReceivedData" th:value="${trainingRequest?.requirementReceivedData}" required readonly>
-              </div>
-              <div class="col-md-6">
-                <label for="RequestedTrainingStartDate" class="form-label"> Training start date </label>
-                <input type="date" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" th:value="${trainingRequest?.requestedTrainingStartDate}" required>
+              <input type="date" class="form-control d-none" id="RequirementReceivedData" name="requirementReceivedData" th:value="${trainingRequest?.requirementReceivedData}" required readonly>
+              <div class="col-md-4  ">
+                <label for="RequestedTrainingStartDate" class="form-label"> Training start date and time </label>
+                <input type="datetime-local" class="form-control" id="RequestedTrainingStartDate" name="requestedTrainingStartDate" th:value="${trainingRequest?.requestedTrainingStartDate}" required>
               </div>
               <div class="col-md-4">
                 <label for="TrainingTimeZone" class="form-label"> Training time zone </label>
@@ -94,13 +84,17 @@
               </div>
               <div class="col-md-4">
                 <label for="TotalCandidates" class="form-label"> Total candidates </label>
-                <input type="number" class="form-control" id="TotalCandidates" name="totalCandidates" min="1" placeholder="10" th:value="${trainingRequest?.totalCandidates}" required>
+                <input type="number" class="form-control" id="TotalCandidates" name="totalCandidates" min="1" max="30" placeholder="10" th:value="${trainingRequest?.totalCandidates}" required>
               </div>
               <div class="col-md-4">
                 <label for="TotalDurationDays" class="form-label"> Total training days </label>
-                <input type="number" class="form-control" id="TotalDurationDays" name="totalDurationDays" min="1" placeholder="3" th:value="${trainingRequest?.totalDurationDays}" required>
+                <input type="number" class="form-control" id="TotalDurationDays" name="totalDurationDays" min="1" max="14" placeholder="3" th:value="${trainingRequest?.totalDurationDays}" required>
               </div>
-              <div class="col-12 end">
+              <div class="col-12">
+                <label for="TrainingDescription" class="form-label"> Training description </label> <br>
+                <textarea id="TrainingDescription" class="form-control form__textarea" name="trainingDescription" rows="2" maxlength="100" th:text="${trainingRequest?.trainingDescription}" required> </textarea>
+              </div>
+              <div class="col-12 gap-2 d-flex justify-content-end">
                 <button type="submit" class="btn btn-primary"> Submit </button>
                 <a class="btn btn-secondary" th:href="@{/dashboard}"> Cancel </a>
               </div>

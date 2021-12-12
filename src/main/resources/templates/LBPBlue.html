@@ -3,7 +3,7 @@
 <meta charset="UTF-8" xmlns:th="http://www.thymeleaf.org">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>New Training</title>
+<title> Training Management System | Atos </title>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
@@ -35,39 +35,37 @@ function CountInstructors() {
 </script>
 </head>
 <body>
-	<div>
-		<nav class="navbar navbar-light bg-light">
-			<div class="container-fluid">
-				<div class="d-flex">
-					<img style="width: 50px;" src="/../../assets/Atos_logo.jpg"
-						alt="atos icon">
-				</div>
-				<div class="row">
-					<div class="btn-group col">
-						<button type="button" class="btn btn-light dropdown-toggle"
-							data-bs-toggle="dropdown" aria-expanded="false">Options
-						</button>
-						<ul class="dropdown-menu">
-							<li><a class="dropdown-item" href="#">Option #1</a></li>
-							<li><a class="dropdown-item" href="#">Option #2</a></li>
-							<li><a class="dropdown-item" href="#">Option #3</a></li>
-							<li>
-								<hr class="dropdown-divider">
-							</li>
-							<li><a class="dropdown-item" href="#">If necesary</a></li>
-						</ul>
-					</div>
-				</div>
-				<div class="d-flex">
-					<a class="nav-link" href="#"><i class="fas fa-user"></i>
-						Username</a>
+	<header>
+		<nav class="navbar bg-white">
+			<div class="container">
+				<a th:href="@{/dashboard}">
+					<img style="width: 50px;" src="../../assets/Atos_Origin_2011_logo.svg" alt="atos icon">
+				</a>
+				<ul class="nav justify-content-center">
+					<li class="nav-item">
+						<a th:href="@{/dashboard}">
+							<button type="button" class="btn btn-primary"> My Dashboard </button>
+						</a>
+					</li>
+				</ul>
+				<div class="dropdown">
+					<a class="nav-link dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="fas fa-user"></i> John Doe
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<li><a class="dropdown-item" th:href="@{/dashboard}"> Delivery Dashboard </a></li>
+						<li><a class="dropdown-item" th:href="@{/LBP/dashboard}"> LBP Dashboard </a></li>
+						<li><a class="dropdown-item" th:href="@{/trainerdashboard}"> Trainer Dashboard </a></li>
+						<li><hr class="dropdown-divider"></li>
+						<li><a class="dropdown-item" th:href="@{/login}"> Log out </a></li>
+					</ul>
 				</div>
 			</div>
 		</nav>
-	</div>
-	<main class="p-5">
-	<div class="row">
-		<div class="col-3">
+	</header>
+	<main class="d-flex justify-content-center p-5 bg-light">
+		<div class="row">
+		<div class="col-lg-4">
 			<div class="new card-course card m-1" >
 				<div class="card-body">
 					<h5 class="card-title">
@@ -90,23 +88,23 @@ function CountInstructors() {
 			<br/>
 			<a th:href="dashboard"><button class="btn btn-primary">Go Back</button></a>
 		</div>
-		<div class="col-9">
+		<div class="col-lg-8">
 			<div class="container new border p-3">
 				<div th:if="${alerttype=='success' || alerttype=='danger' }"  th:attr="class=${alerttype == 'success' ? 'alert alert-success' : 'alert alert-danger'}"  th:utext="${alertmessage}" role="alert">
 				</div>
-			<h2> <i class="icon fas fa-list-ul"></i> Request Details</h2>
+			<h2> Request Details </h2>
 				<div class="row">
 					<div class="col-6">
 						<div class="card m-1">
 							<div class="card-body">
 								<ul class="list-group list-group-flush">
 								  <li class="list-group-item" th:utext="${'&lt;strong&gt; Requirement ID: &lt;/strong&gt;'+r.RequirementID}"></li>
-								  <li class="list-group-item" th:utext="${'&lt;strong&gt;Received Data:&lt;/strong&gt; '+r.RequirementReceivedData}"></li>
+								  <!--<li class="list-group-item" th:utext="${'&lt;strong&gt;Received Data:&lt;/strong&gt; '+r.RequirementReceivedData}"></li>-->
 								  <li class="list-group-item" th:utext="${'&lt;strong&gt;User:&lt;/strong&gt; '+r.RequirementUser}"></li>
 								  <li class="list-group-item" th:utext="${'&lt;strong&gt;Vertical:&lt;/strong&gt; '+r.RequirementUserVertical + ' ' + r.getVerticalMasterName()}"></li>
 								  <li class="list-group-item" th:utext="${'&lt;strong&gt;Training Area:&lt;/strong&gt; '+r.TrainingArea}"></li>
 								  <li class="list-group-item" th:utext="${'&lt;strong&gt;Training Description:&lt;/strong&gt; '+r.TrainingDescription}"></li>
-								  <li class="list-group-item" th:utext="${'&lt;strong&gt;Requested Training Start Date:&lt;/strong&gt; '+r.RequestedTrainingStartDate}"></li>
+								  <li class="list-group-item" th:utext="${'&lt;strong&gt;Requested Start Date:&lt;/strong&gt; '+ #dates.format(r.RequestedTrainingStartDate, 'dd-MM-yyyy HH:mm')}"></li>
 								  <li class="list-group-item" th:utext="${'&lt;strong&gt;Total Candidates:&lt;/strong&gt; '+r.TotalCandidates}"></li>
 								</ul>
 							</div>
@@ -128,33 +126,31 @@ function CountInstructors() {
 										</div>
 										<br>
 									  </div>
-									  <br>
 									  <div id="instructorcount"></div>
-									  <input type="submit" class="btn btn-primary" value="Request">
+									  <input type="submit" class="btn btn-primary mb-2" value="Send Training Request">
 									  <input class="btn btn-primary float-right" value="Ask All Instructors">
-									  
 								  	  <input name="requirementID" th:value="${r.RequirementID}" hidden/>
 								</div>
 							</div>
-							</form>
-							<br>
-							<form th:action="@{processRequirementMessage}" method="post">
-								<div class="md-form">
-								  <i class="icon fas fa-pencil-alt prefix"></i> Training Status Message
-								  <textarea name="requirementMessage" class="md-textarea form-control" style="overflow-y: scroll;" rows="2"></textarea>
-								  <div class="p-2">
-								  	<input name="requirementID" th:value="${r.RequirementID}" hidden/>
-								  	<input type="submit" class="btn btn-primary" value="Submit Message"/>
-								  </div>
-								</div>
-							</form> 
+						</form>
+						<br>
+						<!--<form th:action="@{processRequirementMessage}" method="post">
+							<div class="md-form">
+							  <i class="icon fas fa-pencil-alt prefix"></i> Training Status Message
+							  <textarea name="requirementMessage" class="md-textarea form-control" style="overflow-y: scroll;" rows="2"></textarea>
+							  <div class="p-2">
+								<input name="requirementID" th:value="${r.RequirementID}" hidden/>
+								<input type="submit" class="btn btn-primary" value="Submit Message"/>
+							  </div>
+							</div>
+						</form> -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 	</main>
-	<footer style="bottom: 0; width: 100%; height: 10px">
+	<footer class="bg-white" style="bottom: 0; width: 100%; height: 10px">
 		<div class="text-center p-4"
 			style="background-color: rgba(0, 0, 0, 0.05);">
 			© 2021 Copyright: <img style="width: 50px;"

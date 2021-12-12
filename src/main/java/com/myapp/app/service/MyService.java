@@ -63,4 +63,9 @@ public class MyService {
 		return jdbc.acceptProposalByID(id);
 		
 	}
+
+	public Object getVerticalById(String id) {
+		com.myapp.app.jdbc.JDBC jdbc = new JDBC();
+		return jdbc.getExecutionById(id);
+	}
 }
