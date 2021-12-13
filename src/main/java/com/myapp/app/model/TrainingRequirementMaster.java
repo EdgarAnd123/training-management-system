@@ -106,6 +106,10 @@ public class TrainingRequirementMaster {
 		List<TrainingProposals> p = jdbc.getProposalsByRequirementId(RequirementID);
 		return p;
 	}
+
+	public LDMemberData getTrainerObject() {
+		return jdbc.getMemberById(getExecutionJDBC().getTrainer());
+	}
 	
 	
 	public String getStatus() {
