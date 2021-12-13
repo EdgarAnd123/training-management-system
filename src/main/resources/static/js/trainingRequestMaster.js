@@ -13,7 +13,6 @@ const serializeForm = form => JSON.stringify(
 $('#trainingRequestForm').on('submit', function(event) {
     event.preventDefault();
     const data = serializeForm(this);
-    console.log(data);
 
     if(data.includes("requirementID")) {
         $.ajax({

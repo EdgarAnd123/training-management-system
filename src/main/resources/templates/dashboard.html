@@ -213,7 +213,7 @@
 																</div>
 															</h5>
 															<h6 class="card-subtitle mb-2 text-muted"
-																th:utext="${ 'Trainer ' +r.getExecutionJDBC().Trainer}"></h6>
+																th:utext="${ 'Trainer ' + r.getTrainerObject().getMemberName()}"></h6>
 															<p class="card-text"
 																th:utext="${'Confirmed: ' + r.getExecutionJDBC().ConfirmedDate + ' ' + r.getExecutionJDBC().getConfirmedTime}"></p>
 															<p class="card-text"

@@ -22,16 +22,16 @@
       <h2 class="card-title text-center p-4 bg-primary text-white"> Training Management System </h2>
       <div class="pt-4 pb-5 px-5">
         <p class="text-muted"> Enter your credentials in order to log in </p>
-        <form id="loginForm" class="row g-3 gap-2">
-          <div class="form-floating col-md-12">
+        <form id="loginForm" class="row g-1 gap-2">
+          <div class="form-floating my-0 col-lg-12">
+            <input type="text" class="form-control" id="Email" placeholder="account@atos.net">
             <label for="Email"> Email address </label>
-            <input type="text" class="form-control" id="Email" name="email" placeholder="account@atos.net">
-            <div class="email error-message"></div>
+            <p id="email-error-message" class="error__text"></p>
           </div>
-          <div class="form-floating col-md-12">
+          <div class="form-floating my-0 col-lg-12">
+            <input type="password" class="form-control" id="Password" placeholder="Password">
             <label for="Password"> Password </label>
-            <input type="password" class="form-control" id="Password" name="password" placeholder="intel123">
-            <div class="password error-message"></div>
+            <p id="password-error-message" class="error__text"></p>
           </div>
           <div class="col-12 d-grid">
             <button type="submit" class="btn btn-primary"> Sign in </button>

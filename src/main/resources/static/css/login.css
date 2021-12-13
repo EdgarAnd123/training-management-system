@@ -12,6 +12,11 @@
     border-radius: 1rem 1rem 0 0;
 }
 
+.error__text {
+    color: red;
+    font-size: 14px;
+}
+
 .footer {
     position: sticky;
 }
